@@ -15,9 +15,13 @@ module.exports = {
         JakartaExtraLight: ["Jakarta-ExtraLight", "sans-serif"],
       },
       colors: {
+        background: {
+          light: '#FFFFFF',
+          dark: '#000000',
+        },
         primary: {
-          DEFAULT: "#0286FF",
           light: {
+            DEFAULT: "#0286FF",
             100: "#F5F8FF",
             200: "#EBF4FF",
             300: "#C3D9FF",
@@ -29,6 +33,7 @@ module.exports = {
             900: "#242B4D",
           },
           dark: {
+            DEFAULT: "#0286FF",
             100: "#1C2436",
             200: "#1A2232",
             300: "#18202E",
@@ -41,8 +46,8 @@ module.exports = {
           },
         },
         secondary: {
-          DEFAULT: "#AAAAAA",
           light: {
+            DEFAULT: "#AAAAAA",
             100: "#F8F8F8",
             200: "#F1F1F1",
             300: "#D9D9D9",
@@ -54,6 +59,7 @@ module.exports = {
             900: "#333333",
           },
           dark: {
+            DEFAULT: "#AAAAAA",
             100: "#1D1D1D",
             200: "#2A2A2A",
             300: "#3A3A3A",
@@ -66,8 +72,8 @@ module.exports = {
           },
         },
         success: {
-          DEFAULT: "#38A169",
           light: {
+            DEFAULT: "#38A169",
             100: "#F0FFF4",
             200: "#C6F6D5",
             300: "#9AE6B4",
@@ -79,6 +85,7 @@ module.exports = {
             900: "#1C4532",
           },
           dark: {
+            DEFAULT: "#38A169",
             100: "#153B2C",
             200: "#1B523E",
             300: "#216A50",
@@ -91,8 +98,8 @@ module.exports = {
           },
         },
         danger: {
-          DEFAULT: "#F56565",
           light: {
+            DEFAULT: "#F56565",
             100: "#FFF5F5",
             200: "#FED7D7",
             300: "#FEB2B2",
@@ -104,6 +111,7 @@ module.exports = {
             900: "#742A2A",
           },
           dark: {
+            DEFAULT: "#F56565",
             100: "#4B1F1F",
             200: "#5F2A2A",
             300: "#732E2E",
@@ -116,8 +124,8 @@ module.exports = {
           },
         },
         warning: {
-          DEFAULT: "#EAB308",
           light: {
+            DEFAULT: "#EAB308",
             100: "#FFFBEB",
             200: "#FEF3C7",
             300: "#FDE68A",
@@ -129,6 +137,7 @@ module.exports = {
             900: "#713F12",
           },
           dark: {
+            DEFAULT: "#EAB308",
             100: "#4D3B10",
             200: "#5F4A14",
             300: "#715A18",
@@ -141,8 +150,8 @@ module.exports = {
           },
         },
         general: {
-          DEFAULT: "#CED1DD",
           light: {
+            DEFAULT: "#CED1DD",
             100: "#CED1DD",
             200: "#858585",
             300: "#EEEEEE",
@@ -153,6 +162,7 @@ module.exports = {
             800: "#ADADAD",
           },
           dark: {
+            DEFAULT: "#CED1DD",
             100: "#1A1A1A",
             200: "#2B2B2B",
             300: "#3C3C3C",
