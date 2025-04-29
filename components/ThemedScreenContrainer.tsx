@@ -1,42 +1,24 @@
-// import React from "react";
-// import { Theme } from "../constants/Theme";
-// import {
-//   View,
-//   ViewProps,
-//   ScrollView,
-//   DimensionValue,
-//   KeyboardAvoidingView,
-// } from "react-native";
+import React from "react";
+import { View, ViewProps, SafeAreaView } from "react-native";
 
-// interface ThemedScreenContrainerProps extends ViewProps {
-//   children: React.ReactNode;
-//   withPadding?: boolean;
-// }
+interface ThemedScreenContrainerProps extends ViewProps {
+  children: React.ReactNode;
+  className?: string;
+}
 
-// export const ThemedScreenContrainer = ({
-//   children,
-//   withPadding = true,
-// }: ThemedScreenContrainerProps) => {
-//   return (
-//     <KeyboardAvoidingView style={{ flex: 1 }} behavior={"padding"}>
-//       <ScrollView
-//         contentContainerStyle={{
-//           flexGrow: 1,
-//           alignItems: "center",
-//           justifyContent: "center",
-//           padding: withPadding ? Theme.spacing.lg : 0,
-//         }}
-//         keyboardShouldPersistTaps="handled"
-//       >
-//         <View
-//           style={{
-//             width: Theme.layout.containerWidth as DimensionValue,
-//             rowGap: Theme.spacing.xl,
-//           }}
-//         >
-//           {children}
-//         </View>
-//       </ScrollView>
-//     </KeyboardAvoidingView>
-//   );
-// };
+export const ThemedScreenContrainer = ({
+  children,
+  className,
+  ...rest
+}: ThemedScreenContrainerProps) => {
+  return (
+    <SafeAreaView className="flex-1 items-center bg-background-light dark:bg-background-dark pl-4 pr-4">
+      <View
+        className={`w-['90%'] pt-5 pb-5 h-full flex-1 items-center gap-5 ${className}`}
+        {...rest}
+      >
+        {children}
+      </View>
+    </SafeAreaView>
+  );
+};

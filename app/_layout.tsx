@@ -1,3 +1,4 @@
+import "../lang/i18n";
 import "../global.css";
 import "react-native-reanimated";
 import { useEffect } from "react";

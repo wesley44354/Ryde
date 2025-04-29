@@ -1,26 +1,36 @@
-import { II18nextTypes } from "@/interfaces/Ii18nextTypes";
-import { Text, type TextProps, useColorScheme } from "react-native";
 import { useTranslation } from "react-i18next";
+import { II18nextTypes } from "@/types/i18next";
+import { Text, type TextProps, useColorScheme } from "react-native";
 
 export type ThemedTextProps = TextProps & {
-  color?:
-    | "primary"
-    | "secondary"
-    | "success"
-    | "danger"
-    | "warning"
-    | "general";
-  type?: "default" | "title" | "subtitle" | "small";
-  children: keyof II18nextTypes;
   className?: string;
+  children: keyof II18nextTypes;
+  type?: "default" | "title" | "subtitle" | "small" | "bold";
+  color?:
+    | "danger"
+    | "primary"
+    | "success"
+    | "warning"
+    | "general"
+    | "secondary";
+  fontFamily?:
+    | "Jakarta"
+    | "JakartaBold"
+    | "JakartaThin"
+    | "extralight"
+    | "JakartaLight"
+    | "JakartaMedium"
+    | "JakartaSemiBold"
+    | "JakartaExtraBold";
 };
 
 export function ThemedText({
   style,
-  className,
-  children,
-  type = "default",
   color,
+  children,
+  className,
+  type = "default",
+  fontFamily = "Jakarta",
   ...rest
 }: ThemedTextProps) {
   const { t } = useTranslation();
@@ -28,10 +38,11 @@ export function ThemedText({
 
   let textStyle = "";
 
-  if (type === "title") textStyle = "text-4xl font-bold leading-8";
-  if (type === "default") textStyle = "text-base leading-6";
-  if (type === "subtitle") textStyle = "text-xl font-bold";
-  if (type === "small") textStyle = "text-xs leading-5";
+  if (type === "bold") textStyle = "text-md font-JakartaBold";
+  if (type === "default") textStyle = "text-base leading-6 Jakarta";
+  if (type === "small") textStyle = "text-xs leading-5 JakartaThin";
+  if (type === "subtitle") textStyle = "text-xl font-bold JakartaMedium";
+  if (type === "title") textStyle = "text-4xl leading-8 JakartaSemiBold";
 
   const colorClass = !color
     ? theme === "dark"
@@ -41,11 +52,11 @@ export function ThemedText({
 
   return (
     <Text
-      className={`${textStyle} ${colorClass} ${className}`}
+      className={`${colorClass} font-${fontFamily} ${textStyle} ${className}`}
       style={style}
       {...rest}
     >
-      {t(children)}
+      {t(children, { APP_NAME: "aqui faz ele pegar o real nome do app" })}
     </Text>
   );
 }
