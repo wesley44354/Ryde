@@ -1,51 +1,92 @@
+import i18n from "@/lang/i18n";
 import { router } from "expo-router";
+import { Image } from "react-native";
 import Swiper from "react-native-swiper";
 import { useRef, useState } from "react";
+import { AppConfig } from "@/constants/appConfig";
+import { onboarding } from "@/constants/onboarding";
 import { ThemedText } from "@/components/ThemedText";
+import ThemedSwiper from "@/components/ThemedSwiper";
 import { TouchableOpacity, View } from "react-native";
 import { ThemedButton } from "@/components/ThemedButton";
 import { ThemedScreenContrainer } from "@/components/ThemedScreenContrainer";
-import { onboarding } from "@/constants/onboarding";
 
 const Welcome = () => {
   const swiperRef = useRef<Swiper>(null);
   const [activeIndex, setActiveIndex] = useState(1);
+  const isLastSlide = activeIndex === onboarding.length - 1;
 
   return (
-    <ThemedScreenContrainer className="justify-between">
+    <ThemedScreenContrainer className="justify-between ">
       <TouchableOpacity
-        className="w-full flex justify-end items-end"
+        className="w-full flex justify-end items-end p-5"
         onPress={() => {
           router.replace("/(auth)/sign-up");
         }}
       >
-        <ThemedText type="bold" children={"SKIP"} />
+        <ThemedText type="bold" text={"SKIP"} />
       </TouchableOpacity>
 
-      <Swiper
-        ref={swiperRef}
+      <ThemedSwiper
         loop={false}
-        dot={
-          <View className="w-['32px'] h-[4px] mx-1 bg-red-100 rounded-full" />
-        }
-        activeDot={
-          <View className="w-['32px'] h-[4px] mx-1 bg-blue-100 rounded-full" />
-        }
+        ref={swiperRef}
         onIndexChanged={(index) => {
           setActiveIndex(index);
         }}
       >
         {onboarding.map((item) => {
           return (
-            <View key={item.id}>
-              <ThemedText children={item.title} />
-              <ThemedText children={item.description} />
+            <View
+              key={item.id}
+              className="flex justify-between items-center p-5 gap-5"
+            >
+              <Image
+                source={item.image}
+                resizeMode="contain"
+                className="w-full h-[60%]"
+              />
+
+              <View className="flex flex-row items-center justify-center">
+                <ThemedText
+                  type="title"
+                  className="text-center"
+                  i18nTextArgs={{ APP_NAME: AppConfig.name }}
+                >
+                  {i18n.t(item.title)}
+                  {item.appNameDestack ? (
+                    <ThemedText
+                      type="bold"
+                      className="text-primary-light dark:text-primary-dark"
+                    >
+                      {AppConfig.name}
+                    </ThemedText>
+                  ) : (
+                    <></>
+                  )}
+                </ThemedText>
+              </View>
+              <ThemedText
+                type="default"
+                className="text-center"
+                text={item.description}
+                i18nTextArgs={{ APP_NAME: AppConfig.name }}
+              />
             </View>
           );
         })}
-      </Swiper>
+      </ThemedSwiper>
 
-      <ThemedButton onPress={() => {}} children="NEXT" />
+      <View className="w-full flex justify-center items-center p-5 pt-0">
+        <ThemedButton
+          bgVariant="primary"
+          onPress={() => {
+            isLastSlide
+              ? router.replace("/(auth)/sign-up")
+              : swiperRef.current?.scrollBy(1);
+          }}
+          text={isLastSlide ? "GET_STARTED" : "NEXT"}
+        />
+      </View>
     </ThemedScreenContrainer>
   );
 };
