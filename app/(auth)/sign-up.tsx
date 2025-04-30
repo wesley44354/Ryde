@@ -1,9 +1,9 @@
 import { ThemedInput } from "@/components/ThemedInput/ThemedInput";
-import { ThemedText } from "@/components/ThemedText";
-import { images } from "@/constants";
-import { Image, KeyboardAvoidingView, ScrollView, View } from "react-native";
-import { useState } from "react";
 import { ThemedButton } from "@/components/ThemedButton";
+import { Image, ScrollView, View } from "react-native";
+import { ThemedText } from "@/components/ThemedText";
+import { icons, images } from "@/constants";
+import { useState } from "react";
 
 const SignUp = () => {
   const [name, setName] = useState("");
@@ -20,7 +20,28 @@ const SignUp = () => {
       <ScrollView className="pr-5 pl-5 top-48">
         <ThemedText type="title" numberOfLines={1} text="CREATE_YOUR_ACCOUNT" />
 
-        <ThemedInput label="NAME" value={name} onChangeText={setName} />
+        <ThemedInput
+          label="NAME"
+          value={name}
+          icon={icons.person}
+          onChangeText={setName}
+          placeholder="ENTER_NAME"
+        />
+        <ThemedInput
+          value={name}
+          label="EMAIL"
+          icon={icons.email}
+          onChangeText={setName}
+          placeholder="ENTER_EMAIL"
+        />
+        <ThemedInput
+          value={name}
+          secureTextEntry
+          label="PASSWORD"
+          icon={icons.lock}
+          onChangeText={setName}
+          placeholder="ENTER_PASSWORD"
+        />
         <ThemedButton text="SIGN_UP" />
       </ScrollView>
     </View>

@@ -4,7 +4,6 @@ import "react-native-reanimated";
 import { useEffect } from "react";
 import { Stack } from "expo-router";
 import { useFonts } from "expo-font";
-import colors from "@/constants/colors";
 export { ErrorBoundary } from "expo-router";
 import { useColorScheme } from "react-native";
 import * as SplashScreen from "expo-splash-screen";
@@ -13,6 +12,7 @@ import {
   DarkTheme as NavigationDarkTheme,
   DefaultTheme as NavigationDefaultTheme,
 } from "@react-navigation/native";
+import { colors } from "@/constants/colors";
 
 SplashScreen.preventAutoHideAsync();
 

@@ -15,7 +15,7 @@
     ".expo/types/**/*.ts",
     "nativewind-env.d.ts",
     "constants/colors.js",
-    "tailwind.config.js",
+    "tailwind.config.ts",
     "metro.config.js",
     "metro.config.js"
   ]

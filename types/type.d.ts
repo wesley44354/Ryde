@@ -69,17 +69,6 @@ declare interface GoogleInputProps {
   }) => void;
 }
 
-declare interface InputFieldProps extends TextInputProps {
-  label: string;
-  icon?: any;
-  secureTextEntry?: boolean;
-  labelStyle?: string;
-  containerStyle?: string;
-  inputStyle?: string;
-  iconStyle?: string;
-  className?: string;
-}
-
 declare interface PaymentProps {
   fullName: string;
   email: string;

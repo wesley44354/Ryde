@@ -17,7 +17,8 @@ export const ThemedInputContainer = ({
     <View className="flex-1 my-2">
       {label && (
         <ThemedText
-          className={`text-base mb-2 ${
+          type="bold"
+          className={`color-secondary-light-900 dark:color-secondary-dark-900 mb-2 ml-1 ${
             labelCenter ? "text-center" : "text-left"
           }`}
         >
