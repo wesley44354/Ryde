@@ -4,8 +4,15 @@ import "react-native-reanimated";
 import { useEffect } from "react";
 import { Stack } from "expo-router";
 import { useFonts } from "expo-font";
+import colors from "@/constants/colors";
 export { ErrorBoundary } from "expo-router";
+import { useColorScheme } from "react-native";
 import * as SplashScreen from "expo-splash-screen";
+import { ThemeProvider } from "@react-navigation/native";
+import {
+  DarkTheme as NavigationDarkTheme,
+  DefaultTheme as NavigationDefaultTheme,
+} from "@react-navigation/native";
 
 SplashScreen.preventAutoHideAsync();
 
@@ -34,12 +41,33 @@ export default function RootLayout() {
 }
 
 function RootLayoutNav() {
+  const colorScheme = useColorScheme();
+
+  const MyLightTheme = {
+    ...NavigationDefaultTheme,
+    colors: {
+      ...NavigationDefaultTheme.colors,
+
+      background: colors.background.light,
+    },
+  };
+
+  const MyDarkTheme = {
+    ...NavigationDarkTheme,
+    colors: {
+      ...NavigationDarkTheme.colors,
+      background: colors.background.dark,
+    },
+  };
+
   return (
-    <Stack>
-      <Stack.Screen name="index" options={{ headerShown: false }} />
-      <Stack.Screen name="(root)" options={{ headerShown: false }} />
-      <Stack.Screen name="(auth)" options={{ headerShown: false }} />
-      <Stack.Screen name="+not-found" />
-    </Stack>
+    <ThemeProvider value={colorScheme === "dark" ? MyDarkTheme : MyLightTheme}>
+      <Stack>
+        <Stack.Screen name="index" options={{ headerShown: false }} />
+        <Stack.Screen name="(root)" options={{ headerShown: false }} />
+        <Stack.Screen name="(auth)" options={{ headerShown: false }} />
+        <Stack.Screen name="+not-found" />
+      </Stack>
+    </ThemeProvider>
   );
 }

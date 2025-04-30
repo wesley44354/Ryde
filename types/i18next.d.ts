@@ -2,8 +2,10 @@ import "i18next";
 
 declare interface II18nextTypes {
   SKIP: string;
+  NAME: string;
   NEXT: string;
   GET_STARTED: string;
+  CREATE_YOUR_ACCOUNT: string;
   YOUR_RIDE_YOUR_WAY_LETS_GO: string;
   BEST_CAR_IN_YOUR_HANDS_WITH: string;
   THE_JOURNEY_BEGINS_WITH_APP_NAME: string;

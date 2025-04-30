@@ -14,7 +14,7 @@ export const ThemedScreenContrainer = ({
   return (
     <SafeAreaView
       {...rest}
-      className={`flex-1 items-center bg-background-light dark:bg-background-dark pb-[2%] ${className}`}
+      className={`flex-1 items-center pb-[2%] ${className}`}
     >
       {children}
     </SafeAreaView>

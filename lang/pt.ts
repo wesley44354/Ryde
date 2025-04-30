@@ -1,9 +1,14 @@
 import { II18nextTypes } from "@/types/i18next";
 
 export const pt: II18nextTypes = {
+  // auth
+  NAME: "Nome:",
   SKIP: "Pular",
   NEXT: "Próximo",
   GET_STARTED: "Começar",
+  CREATE_YOUR_ACCOUNT: "Crie sua conta",
+
+  // onbording
   YOUR_RIDE_YOUR_WAY_LETS_GO: "Sua carona, do seu jeito. Vamos lá!",
   BEST_CAR_IN_YOUR_HANDS_WITH: "O melhor carro em suas mãos com o ",
   THE_PERFECT_RIDE_IS_JUST_A_TAP_AWAY:
