@@ -1,21 +1,17 @@
+import React from "react";
 import { useTranslation } from "react-i18next";
 import { II18nextTypes } from "@/types/i18next";
+import { ColorIntensity, ColorTypes } from "@/constants/colors";
 import { Text, type TextProps, useColorScheme } from "react-native";
-import React from "react";
 
 export type ThemedTextProps = TextProps & {
   className?: string;
+  color?: ColorTypes;
   text?: keyof II18nextTypes;
   children?: React.ReactNode;
   i18nTextArgs?: Record<string, any>;
+  colorIntensity?: keyof ColorIntensity;
   type?: "default" | "title" | "subtitle" | "small" | "bold";
-  color?:
-    | "danger"
-    | "primary"
-    | "success"
-    | "warning"
-    | "general"
-    | "secondary";
   fontFamily?:
     | "Jakarta"
     | "JakartaBold"
@@ -36,6 +32,7 @@ export function ThemedText({
   i18nTextArgs,
   type = "default",
   fontFamily = "Jakarta",
+  colorIntensity = "DEFAULT",
   ...rest
 }: ThemedTextProps) {
   const { t } = useTranslation();
@@ -49,15 +46,18 @@ export function ThemedText({
   if (type === "subtitle") textStyle = "text-xl font-bold JakartaMedium";
   if (type === "title") textStyle = "text-4xl leading-10 JakartaSemiBold";
 
-  const colorClass = !color
-    ? theme === "dark"
-      ? "text-white"
-      : "text-black"
-    : `text-${color}-light-100 dark:text-${color}-dark-100`;
+  const getColorFromTheme = (): string => {
+    if (!color) return theme === "dark" ? "text-white" : "text-black";
+
+    const intensity = colorIntensity === "DEFAULT" ? "" : `-${colorIntensity}`;
+    const lightColor = `text-${color}-light${intensity}`;
+    const darkColor = `dark:text-${color}-dark${intensity}`;
+    return theme === "dark" ? darkColor : lightColor;
+  };
 
   return (
     <Text
-      className={`${colorClass} font-${fontFamily} ${textStyle} ${className}`}
+      className={`font-${fontFamily} ${textStyle} ${getColorFromTheme()} ${className} `}
       style={style}
       {...rest}
     >

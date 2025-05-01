@@ -1,11 +1,27 @@
 import "i18next";
 
 declare interface II18nextTypes {
+  // auth
   SKIP: string;
   NAME: string;
   NEXT: string;
+  EMAIL: string;
+  LOG_IN: string;
+  SIGN_UP: string;
+  PASSWORD: string;
+  ENTER_NAME: string;
+  ENTER_EMAIL: string;
   GET_STARTED: string;
+  ENTER_PASSWORD: string;
   CREATE_YOUR_ACCOUNT: string;
+  ALREADY_HAVE_AN_ACCOUNT: string;
+
+  // validation
+  VALIDATION_SHORT_PASSWORD: string;
+  VALIDATION_INVALID_EMAIL: string;
+  VALIDATION_REQUIRED: string;
+
+  // onbording
   YOUR_RIDE_YOUR_WAY_LETS_GO: string;
   BEST_CAR_IN_YOUR_HANDS_WITH: string;
   THE_JOURNEY_BEGINS_WITH_APP_NAME: string;

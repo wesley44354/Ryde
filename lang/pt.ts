@@ -5,8 +5,21 @@ export const pt: II18nextTypes = {
   NAME: "Nome:",
   SKIP: "Pular",
   NEXT: "Próximo",
+  LOG_IN: "Login",
+  EMAIL: "E-Mail:",
+  PASSWORD: "Senha:",
+  ENTER_NAME: "Seu nome",
   GET_STARTED: "Começar",
+  SIGN_UP: "Inscrever-se",
+  ENTER_EMAIL: "Seu email",
+  ENTER_PASSWORD: "Sua senha",
   CREATE_YOUR_ACCOUNT: "Crie sua conta",
+  ALREADY_HAVE_AN_ACCOUNT: "Já tem uma conta?",
+
+  // validation
+  VALIDATION_SHORT_PASSWORD: "Senha deve ter no mínimo 6 caracteres",
+  VALIDATION_INVALID_EMAIL: "E-mail inválido",
+  VALIDATION_REQUIRED: "O campo é obrigatório",
 
   // onbording
   YOUR_RIDE_YOUR_WAY_LETS_GO: "Sua carona, do seu jeito. Vamos lá!",

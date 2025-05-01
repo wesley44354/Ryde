@@ -13,6 +13,7 @@ import {
   DefaultTheme as NavigationDefaultTheme,
 } from "@react-navigation/native";
 import { colors } from "@/constants/colors";
+import { setZodErrorMessages } from "@/lang/zod";
 
 SplashScreen.preventAutoHideAsync();
 
@@ -29,6 +30,7 @@ export default function RootLayout() {
 
   useEffect(() => {
     if (loaded) {
+      setZodErrorMessages();
       SplashScreen.hideAsync();
     }
   }, [loaded]);

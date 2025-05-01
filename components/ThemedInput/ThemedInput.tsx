@@ -7,18 +7,20 @@ import { ThemedInputContainer } from "./ThemedInputContainer";
 import {
   View,
   Image,
+  Text,
+  Keyboard,
   TextInput,
+  Platform,
   TextInputProps,
   useColorScheme,
   KeyboardAvoidingView,
-  Platform,
   TouchableWithoutFeedback,
-  Keyboard,
 } from "react-native";
 
-interface Props extends TextInputProps {
+export interface InputProps extends TextInputProps {
   icon?: any;
   value: string;
+  error?: string;
   mask?: MasksType;
   scannerEnabled?: boolean;
   secureTextEntry?: boolean;
@@ -41,7 +43,8 @@ export const ThemedInput = ({
   onSubmitEditing,
   secureTextEntry = false,
   keyboardType = "default",
-}: Props) => {
+  error,
+}: InputProps) => {
   const { t } = useTranslation();
   const colorScheme = useColorScheme();
   const [isFocused, setIsFocused] = useState(false);
@@ -54,6 +57,17 @@ export const ThemedInput = ({
     onChangeText && onChangeText(value);
   };
 
+  const borderColorClass = (() => {
+    switch (true) {
+      case !!error:
+        return "border-2 border-danger-light dark:border-danger-dark";
+      case isFocused:
+        return "border-2 border-primary-light dark:border-primary-dark";
+      default:
+        return "border-none";
+    }
+  })();
+
   return (
     <KeyboardAvoidingView
       behavior={Platform.OS === "ios" ? "padding" : "height"}
@@ -61,17 +75,16 @@ export const ThemedInput = ({
       <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
         <ThemedInputContainer label={label ? t(label) : undefined}>
           <View
-            className={`h-12 flex-row items-center justify-between rounded-3xl  ${
-              isFocused
-                ? "border-2 border-primary-light dark:border-primary-dark"
-                : "border-none"
-            } bg-general-light-500 dark:bg-general-dark-500`}
+            className={`h-12 flex-row items-center justify-between rounded-3xl ${borderColorClass} bg-general-light-500 dark:bg-general-dark-500`}
           >
             {icon && (
-              <Image
-                source={icon}
-                className="w-6 h-6 ml-4 color-general-light-200 dark:color-general-dark-200"
-              />
+              <View className="h-[50%] aspect-square ml-5 flex items-center">
+                <Image
+                  source={icon}
+                  resizeMode="contain"
+                  className="flex-1 color-general-light-200 dark:color-general-dark-200"
+                />
+              </View>
             )}
             <TextInput
               value={value}
@@ -83,12 +96,17 @@ export const ThemedInput = ({
               onFocus={() => setIsFocused(true)}
               onBlur={() => setIsFocused(false)}
               cursorColor={colors.primary[colorScheme!].DEFAULT}
-              selectionColor={colors.primary[colorScheme!][500]}
+              selectionColor={colors.primary[colorScheme!].DEFAULT}
               placeholder={placeholder ? t(placeholder) : undefined}
               placeholderTextColor={colors.general[colorScheme!][800]}
               className="flex-1 h-full px-4 text-[16px] color-secondary-light-900 dark:color-secondary-dark-900"
             />
           </View>
+          {!!error && (
+            <Text className="text-xs mt-1 ml-2 text-danger-light dark:text-danger-dark">
+              {error}
+            </Text>
+          )}
         </ThemedInputContainer>
       </TouchableWithoutFeedback>
     </KeyboardAvoidingView>
