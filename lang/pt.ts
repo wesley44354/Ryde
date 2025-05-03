@@ -13,8 +13,11 @@ export const pt: II18nextTypes = {
   SIGN_UP: "Inscrever-se",
   ENTER_EMAIL: "Seu email",
   ENTER_PASSWORD: "Sua senha",
+  LET_GET_STARTED: "Vamos começar",
   CREATE_YOUR_ACCOUNT: "Crie sua conta",
   ALREADY_HAVE_AN_ACCOUNT: "Já tem uma conta?",
+  SIGN_UP_OR_LOG_IN_TO_FIND_OUT_THE_BEST_CAR_FOR_YOU:
+    "Cadastre-se ou faça login para descobrir o melhor carro para você",
 
   // validation
   VALIDATION_SHORT_PASSWORD: "Senha deve ter no mínimo 6 caracteres",

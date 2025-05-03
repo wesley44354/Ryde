@@ -12,12 +12,13 @@ export const ThemedInputController = ({ name, control, ...rest }: Props) => {
     <Controller
       control={control}
       name={name}
-      render={({ field: { onChange, value }, fieldState: { error } }) => (
+      render={({ field: { onChange, value, ref }, fieldState: { error } }) => (
         <ThemedInput
           {...rest}
           onChangeText={onChange}
           error={error?.message}
           value={value}
+          ref={ref}
         />
       )}
     />

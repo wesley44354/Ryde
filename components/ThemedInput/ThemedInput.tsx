@@ -1,7 +1,7 @@
-import React, { useState } from "react";
 import { colors } from "@/constants/colors";
 import { useTranslation } from "react-i18next";
 import { II18nextTypes } from "@/types/i18next";
+import React, { useState, forwardRef } from "react";
 import { masks, MasksType } from "@/constants/masks";
 import { ThemedInputContainer } from "./ThemedInputContainer";
 import {
@@ -9,12 +9,11 @@ import {
   Image,
   Text,
   Keyboard,
-  TextInput,
   Platform,
+  Pressable,
+  TextInput,
   TextInputProps,
   useColorScheme,
-  KeyboardAvoidingView,
-  TouchableWithoutFeedback,
 } from "react-native";
 
 export interface InputProps extends TextInputProps {
@@ -32,47 +31,49 @@ export interface InputProps extends TextInputProps {
   inputMode?: "none" | "text" | "numeric" | "tel" | "search" | "email" | "url";
 }
 
-export const ThemedInput = ({
-  icon,
-  mask,
-  label,
-  value,
-  inputMode,
-  placeholder,
-  onChangeText,
-  onSubmitEditing,
-  secureTextEntry = false,
-  keyboardType = "default",
-  error,
-}: InputProps) => {
-  const { t } = useTranslation();
-  const colorScheme = useColorScheme();
-  const [isFocused, setIsFocused] = useState(false);
+export const ThemedInput = forwardRef<TextInput, InputProps>(
+  (
+    {
+      icon,
+      mask,
+      label,
+      value,
+      inputMode,
+      placeholder,
+      onChangeText,
+      onSubmitEditing,
+      secureTextEntry = false,
+      keyboardType = "default",
+      error,
+      ...rest
+    },
+    ref
+  ) => {
+    const { t } = useTranslation();
+    const colorScheme = useColorScheme();
+    const [isFocused, setIsFocused] = useState(false);
 
-  const handleOnChangeText = (text: string) => {
-    let value = text;
-    if (mask) {
-      value = masks[mask](String(value));
-    }
-    onChangeText && onChangeText(value);
-  };
+    const handleOnChangeText = (text: string) => {
+      let value = text;
+      if (mask) {
+        value = masks[mask](String(value));
+      }
+      onChangeText && onChangeText(value);
+    };
 
-  const borderColorClass = (() => {
-    switch (true) {
-      case !!error:
-        return "border-2 border-danger-light dark:border-danger-dark";
-      case isFocused:
-        return "border-2 border-primary-light dark:border-primary-dark";
-      default:
-        return "border-none";
-    }
-  })();
+    const borderColorClass = (() => {
+      switch (true) {
+        case !!error:
+          return "border-2 border-danger-light dark:border-danger-dark";
+        case isFocused:
+          return "border-2 border-primary-light dark:border-primary-dark";
+        default:
+          return "border-none";
+      }
+    })();
 
-  return (
-    <KeyboardAvoidingView
-      behavior={Platform.OS === "ios" ? "padding" : "height"}
-    >
-      <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
+    return (
+      <Pressable onPress={Platform.OS !== "web" ? Keyboard.dismiss : undefined}>
         <ThemedInputContainer label={label ? t(label) : undefined}>
           <View
             className={`h-12 flex-row items-center justify-between rounded-3xl ${borderColorClass} bg-general-light-500 dark:bg-general-dark-500`}
@@ -87,6 +88,7 @@ export const ThemedInput = ({
               </View>
             )}
             <TextInput
+              ref={ref}
               value={value}
               inputMode={inputMode}
               keyboardType={keyboardType}
@@ -99,7 +101,8 @@ export const ThemedInput = ({
               selectionColor={colors.primary[colorScheme!].DEFAULT}
               placeholder={placeholder ? t(placeholder) : undefined}
               placeholderTextColor={colors.general[colorScheme!][800]}
-              className="flex-1 h-full px-4 text-[16px] color-secondary-light-900 dark:color-secondary-dark-900"
+              className="flex-1 h-full outline-0 px-4 text-[16px] color-secondary-light-900 dark:color-secondary-dark-900"
+              {...rest}
             />
           </View>
           {!!error && (
@@ -108,7 +111,7 @@ export const ThemedInput = ({
             </Text>
           )}
         </ThemedInputContainer>
-      </TouchableWithoutFeedback>
-    </KeyboardAvoidingView>
-  );
-};
+      </Pressable>
+    );
+  }
+);

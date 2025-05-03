@@ -47,7 +47,11 @@ export function ThemedText({
   if (type === "title") textStyle = "text-4xl leading-10 JakartaSemiBold";
 
   const getColorFromTheme = (): string | undefined => {
-    if (className?.includes("text-")) return undefined;
+    if (
+      className?.includes("text-") &&
+      (className.includes("light") || className?.includes("dark"))
+    )
+      return undefined;
 
     if (!color) return theme === "dark" ? "#ffffff" : "#000000";
 

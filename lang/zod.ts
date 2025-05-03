@@ -14,14 +14,16 @@ export const setZodErrorMessages = () => {
           message: i18n.t("VALIDATION_SHORT_PASSWORD"),
         };
       case "invalid_type":
-        if (error.path[0] === "email") {
+        return {
+          message: i18n.t("VALIDATION_REQUIRED"),
+        };
+      case "invalid_string":
+        if (error.validation === "email") {
           return {
             message: i18n.t("VALIDATION_INVALID_EMAIL"),
           };
         }
-        return {
-          message: i18n.t("VALIDATION_REQUIRED"),
-        };
+        return { message: error.message };
       default:
         return { message: error.message };
     }

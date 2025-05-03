@@ -1,4 +1,5 @@
 import "i18next";
+import { string } from "zod";
 
 declare interface II18nextTypes {
   // auth
@@ -13,8 +14,10 @@ declare interface II18nextTypes {
   ENTER_EMAIL: string;
   GET_STARTED: string;
   ENTER_PASSWORD: string;
+  LET_GET_STARTED: string;
   CREATE_YOUR_ACCOUNT: string;
   ALREADY_HAVE_AN_ACCOUNT: string;
+  SIGN_UP_OR_LOG_IN_TO_FIND_OUT_THE_BEST_CAR_FOR_YOU: string;
 
   // validation
   VALIDATION_SHORT_PASSWORD: string;

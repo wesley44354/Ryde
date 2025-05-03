@@ -1,11 +1,11 @@
 import { ThemedInputController } from "@/components/ThemedInput/ThemedInputController";
+import AuthRedirectLink from "@/components/auth/RedirectLink";
+import AuthContrainer from "@/components/auth/Contrainer";
 import { ThemedButton } from "@/components/ThemedButton";
-import { Image, KeyboardAvoidingView, ScrollView, View } from "react-native";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { ThemedText } from "@/components/ThemedText";
-import { icons, images } from "@/constants";
 import { useForm } from "react-hook-form";
-import { Link } from "expo-router";
+import { icons } from "@/constants";
 import { z } from "zod";
 
 const SignUp = () => {
@@ -17,7 +17,7 @@ const SignUp = () => {
 
   type SignUpSchemaType = z.infer<typeof signUpSchema>;
 
-  const { control, handleSubmit } = useForm<SignUpSchemaType>({
+  const { control, handleSubmit, setFocus } = useForm<SignUpSchemaType>({
     defaultValues: {},
     resolver: zodResolver(signUpSchema),
   });
@@ -27,63 +27,39 @@ const SignUp = () => {
   };
 
   return (
-    <View className="flex-1">
-      <Image
-        resizeMode="stretch"
-        style={{ width: "100%" }}
-        source={images.signUpCar}
-        className="absolute top-0 left-0 right-0 h-[30%] z-10 rounded-b-2xl"
+    <AuthContrainer scrollPaddingTop={200} heightAuthImage="30%">
+      <ThemedText type="title" numberOfLines={1} text="CREATE_YOUR_ACCOUNT" />
+
+      <ThemedInputController
+        name="name"
+        label="NAME"
+        control={control}
+        icon={icons.person}
+        placeholder="ENTER_NAME"
+        onSubmitEditing={() => setFocus("email")}
       />
-      <KeyboardAvoidingView className="flex-1" behavior={"padding"}>
-        <ScrollView className="pr-5 pl-5 pt-48">
-          <View className="gap-5 pb-5">
-            <ThemedText
-              type="title"
-              numberOfLines={1}
-              text="CREATE_YOUR_ACCOUNT"
-            />
+      <ThemedInputController
+        name="email"
+        label="EMAIL"
+        control={control}
+        icon={icons.email}
+        placeholder="ENTER_EMAIL"
+        onSubmitEditing={() => setFocus("password")}
+      />
+      <ThemedInputController
+        name="password"
+        secureTextEntry
+        label="PASSWORD"
+        icon={icons.lock}
+        control={control}
+        placeholder="ENTER_PASSWORD"
+        onSubmitEditing={handleSubmit(onSignUpPress)}
+      />
 
-            <ThemedInputController
-              name="name"
-              label="NAME"
-              control={control}
-              icon={icons.person}
-              placeholder="ENTER_NAME"
-            />
-            <ThemedInputController
-              name="email"
-              label="EMAIL"
-              control={control}
-              icon={icons.email}
-              placeholder="ENTER_EMAIL"
-            />
-            <ThemedInputController
-              name="password"
-              secureTextEntry
-              label="PASSWORD"
-              icon={icons.lock}
-              control={control}
-              placeholder="ENTER_PASSWORD"
-            />
-            <ThemedButton
-              text="SIGN_UP"
-              onPress={handleSubmit(onSignUpPress)}
-            />
+      <ThemedButton text="SIGN_UP" onPress={handleSubmit(onSignUpPress)} />
 
-            <View className="flex items-center justify-center flex-row gap-1">
-              <ThemedText
-                color="general"
-                colorIntensity="200"
-                text="ALREADY_HAVE_AN_ACCOUNT"
-              />
-              <Link href={"/(auth)/sign-in"}>
-                <ThemedText type="bold" color="primary" text="LOG_IN" />
-              </Link>
-            </View>
-          </View>
-        </ScrollView>
-      </KeyboardAvoidingView>
-    </View>
+      <AuthRedirectLink i18nText="ALREADY_HAVE_AN_ACCOUNT" i18nLink="LOG_IN" />
+    </AuthContrainer>
   );
 };
 

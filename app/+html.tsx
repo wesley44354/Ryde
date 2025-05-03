@@ -1,3 +1,4 @@
+import { colors } from "@/constants/colors";
 import { ScrollViewStyleReset } from "expo-router/html";
 
 export default function Root({ children }: { children: React.ReactNode }) {
@@ -13,19 +14,54 @@ export default function Root({ children }: { children: React.ReactNode }) {
 
         <ScrollViewStyleReset />
 
-        <style dangerouslySetInnerHTML={{ __html: responsiveBackground }} />
+        <style dangerouslySetInnerHTML={{ __html: customStyles }} />
       </head>
       <body>{children}</body>
     </html>
   );
 }
 
-const responsiveBackground = `
-body {
-  background-color: #fff;
-}
-@media (prefers-color-scheme: dark) {
+const customStyles = `
   body {
-    background-color: #000;
+    position: relative;
+    background-color: ${colors.background.light};
   }
-}`;
+
+  ::-webkit-scrollbar {
+    width: 0.5rem;
+    height: 0.5rem;
+    margin-right: 0.5rem;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background-color: ${colors.general.light[500]};
+  }
+
+
+  ::-webkit-scrollbar-track {
+    background-color: ${colors.background.light};
+  }
+    
+  ::-webkit-scrollbar-thumb {
+    border-radius: 20px;
+    background-color: ${colors.primary.light.DEFAULT};
+  }
+
+  @media (prefers-color-scheme: dark) {
+    body {
+      background-color: ${colors.background.dark};
+    }
+
+    ::-webkit-scrollbar-thumb:hover {
+      background-color: ${colors.general.dark[500]};
+    }
+
+    ::-webkit-scrollbar-track {
+      background-color: ${colors.background.dark};
+    }
+    ::-webkit-scrollbar-thumb {
+      border-radius: 20px;
+      background-color: ${colors.primary.dark.DEFAULT};
+    }
+  }
+`;
