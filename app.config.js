@@ -26,7 +26,9 @@ export default {
     favicon: "./assets/images/favicon.png"
   },
   plugins: [
-    "expo-router"
+    "expo-font",
+    "expo-router",
+    "expo-web-browser"
   ],
   experiments: {
     typedRoutes: true

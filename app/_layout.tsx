@@ -6,14 +6,14 @@ import { Stack } from "expo-router";
 import { useFonts } from "expo-font";
 export { ErrorBoundary } from "expo-router";
 import { useColorScheme } from "react-native";
+import { setZodErrorMessages } from "@/lang/zod";
 import * as SplashScreen from "expo-splash-screen";
-import { ThemeProvider } from "@react-navigation/native";
 import {
+  ThemeProvider,
   DarkTheme as NavigationDarkTheme,
   DefaultTheme as NavigationDefaultTheme,
 } from "@react-navigation/native";
 import { colors } from "@/constants/colors";
-import { setZodErrorMessages } from "@/lang/zod";
 
 SplashScreen.preventAutoHideAsync();
 

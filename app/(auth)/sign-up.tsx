@@ -73,7 +73,7 @@ const SignUp = () => {
             <View className="flex items-center justify-center flex-row gap-1">
               <ThemedText
                 color="general"
-                colorIntensity="600"
+                colorIntensity="200"
                 text="ALREADY_HAVE_AN_ACCOUNT"
               />
               <Link href={"/(auth)/sign-in"}>

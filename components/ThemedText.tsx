@@ -1,8 +1,8 @@
 import React from "react";
 import { useTranslation } from "react-i18next";
 import { II18nextTypes } from "@/types/i18next";
-import { ColorIntensity, ColorTypes } from "@/constants/colors";
 import { Text, type TextProps, useColorScheme } from "react-native";
+import { ColorIntensity, ColorTypes, colors } from "@/constants/colors";
 
 export type ThemedTextProps = TextProps & {
   className?: string;
@@ -46,19 +46,25 @@ export function ThemedText({
   if (type === "subtitle") textStyle = "text-xl font-bold JakartaMedium";
   if (type === "title") textStyle = "text-4xl leading-10 JakartaSemiBold";
 
-  const getColorFromTheme = (): string => {
-    if (!color) return theme === "dark" ? "text-white" : "text-black";
+  const getColorFromTheme = (): string | undefined => {
+    if (className?.includes("text-")) return undefined;
 
-    const intensity = colorIntensity === "DEFAULT" ? "" : `-${colorIntensity}`;
-    const lightColor = `text-${color}-light${intensity}`;
-    const darkColor = `dark:text-${color}-dark${intensity}`;
-    return theme === "dark" ? darkColor : lightColor;
+    if (!color) return theme === "dark" ? "#ffffff" : "#000000";
+
+    const intensity = colorIntensity === "DEFAULT" ? "DEFAULT" : colorIntensity;
+    const palette: any = colors[color];
+
+    if (theme === "dark") {
+      return palette?.dark?.[intensity] ?? "#ffffff";
+    } else {
+      return palette?.light?.[intensity] ?? "#000000";
+    }
   };
 
   return (
     <Text
-      className={`font-${fontFamily} ${textStyle} ${getColorFromTheme()} ${className} `}
-      style={style}
+      className={`font-${fontFamily} ${textStyle} ${className || ""}`}
+      style={[getColorFromTheme() ? { color: getColorFromTheme() } : {}, style]}
       {...rest}
     >
       {children ? children : t(text!, i18nTextArgs)}
