@@ -49,20 +49,21 @@ export function ThemedText({
   const getColorFromTheme = (): string | undefined => {
     if (
       className?.includes("text-") &&
-      (className.includes("light") || className?.includes("dark"))
+      (className.includes("light") ||
+        className?.includes("dark") ||
+        className?.includes("white") ||
+        className?.includes("dark"))
     )
       return undefined;
 
-    if (!color) return theme === "dark" ? "#ffffff" : "#000000";
+    if (!color) {
+      return colors["secondary"]?.[theme!]?.["900"];
+    }
 
     const intensity = colorIntensity === "DEFAULT" ? "DEFAULT" : colorIntensity;
     const palette: any = colors[color];
 
-    if (theme === "dark") {
-      return palette?.dark?.[intensity] ?? "#ffffff";
-    } else {
-      return palette?.light?.[intensity] ?? "#000000";
-    }
+    return palette?.[theme!]?.[intensity];
   };
 
   return (

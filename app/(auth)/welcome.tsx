@@ -1,4 +1,5 @@
 import { router } from "expo-router";
+import OAuth from "@/components/auth/OAuth";
 import { ThemedText } from "@/components/ThemedText";
 import { ThemedButton } from "@/components/ThemedButton";
 import AuthContrainer from "@/components/auth/Contrainer";
@@ -22,6 +23,9 @@ const Welcome = () => {
           router.replace("/(auth)/sign-up");
         }}
       />
+
+      <OAuth />
+
       <AuthRedirectLink i18nText="ALREADY_HAVE_AN_ACCOUNT" i18nLink="LOG_IN" />
     </AuthContrainer>
   );

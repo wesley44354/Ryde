@@ -4,16 +4,20 @@ import "react-native-reanimated";
 import { useEffect } from "react";
 import { Stack } from "expo-router";
 import { useFonts } from "expo-font";
+import { colors } from "@/constants/colors";
 export { ErrorBoundary } from "expo-router";
 import { useColorScheme } from "react-native";
 import { setZodErrorMessages } from "@/lang/zod";
+import { ClerkLoaded, ClerkProvider } from "@clerk/clerk-expo";
 import * as SplashScreen from "expo-splash-screen";
+import { tokenCache } from "@clerk/clerk-expo/token-cache";
 import {
   ThemeProvider,
   DarkTheme as NavigationDarkTheme,
   DefaultTheme as NavigationDefaultTheme,
 } from "@react-navigation/native";
-import { colors } from "@/constants/colors";
+
+const publishableKey = process.env.EXPO_PUBLIC_CLERK_PUBLISHABLE_KEY;
 
 SplashScreen.preventAutoHideAsync();
 
@@ -63,13 +67,19 @@ function RootLayoutNav() {
   };
 
   return (
-    <ThemeProvider value={colorScheme === "dark" ? MyDarkTheme : MyLightTheme}>
-      <Stack>
-        <Stack.Screen name="index" options={{ headerShown: false }} />
-        <Stack.Screen name="(root)" options={{ headerShown: false }} />
-        <Stack.Screen name="(auth)" options={{ headerShown: false }} />
-        <Stack.Screen name="+not-found" />
-      </Stack>
-    </ThemeProvider>
+    <ClerkProvider publishableKey={publishableKey} tokenCache={tokenCache}>
+      <ClerkLoaded>
+        <ThemeProvider
+          value={colorScheme === "dark" ? MyDarkTheme : MyLightTheme}
+        >
+          <Stack>
+            <Stack.Screen name="index" options={{ headerShown: false }} />
+            <Stack.Screen name="(root)" options={{ headerShown: false }} />
+            <Stack.Screen name="(auth)" options={{ headerShown: false }} />
+            <Stack.Screen name="+not-found" />
+          </Stack>
+        </ThemeProvider>
+      </ClerkLoaded>
+    </ClerkProvider>
   );
 }

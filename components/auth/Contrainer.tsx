@@ -26,7 +26,7 @@ const AuthContrainer = ({
           className={`pr-5 pl-5 pt-${scrollPaddingTop}`}
           style={{ paddingTop: scrollPaddingTop }}
         >
-          <View className="gap-5 pb-5 z-10">{children}</View>
+          <View className="gap-8 pb-5 z-10">{children}</View>
         </ScrollView>
       </KeyboardAvoidingView>
     </View>

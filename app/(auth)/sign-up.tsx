@@ -4,6 +4,7 @@ import AuthContrainer from "@/components/auth/Contrainer";
 import { ThemedButton } from "@/components/ThemedButton";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { ThemedText } from "@/components/ThemedText";
+import OAuth from "@/components/auth/OAuth";
 import { useForm } from "react-hook-form";
 import { icons } from "@/constants";
 import { z } from "zod";
@@ -57,6 +58,8 @@ const SignUp = () => {
       />
 
       <ThemedButton text="SIGN_UP" onPress={handleSubmit(onSignUpPress)} />
+
+      <OAuth />
 
       <AuthRedirectLink i18nText="ALREADY_HAVE_AN_ACCOUNT" i18nLink="LOG_IN" />
     </AuthContrainer>

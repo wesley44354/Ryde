@@ -1,10 +1,27 @@
+import { Link } from "expo-router";
 import { Text, SafeAreaView } from "react-native";
+import { SignOutButton } from "@clerk/clerk-react";
+import { SignedIn, SignedOut, useUser } from "@clerk/clerk-expo";
+import { View } from "react-native-reanimated/lib/typescript/Animated";
 
 const Home = () => {
+  const { user } = useUser();
+
   return (
-    <SafeAreaView>
-      <Text>Home</Text>
-    </SafeAreaView>
+    <View>
+      <SignedIn>
+        <Text>Hello {user?.emailAddresses[0].emailAddress}</Text>
+        <SignOutButton />
+      </SignedIn>
+      <SignedOut>
+        <Link href="/(auth)/sign-in">
+          <Text>Sign in</Text>
+        </Link>
+        <Link href="/(auth)/sign-up">
+          <Text>Sign up</Text>
+        </Link>
+      </SignedOut>
+    </View>
   );
 };
 
