@@ -4,12 +4,22 @@ import AuthContrainer from "@/components/auth/Contrainer";
 import { ThemedButton } from "@/components/ThemedButton";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { ThemedText } from "@/components/ThemedText";
+import { useSignUp } from "@clerk/clerk-expo";
 import OAuth from "@/components/auth/OAuth";
 import { useForm } from "react-hook-form";
 import { icons } from "@/constants";
+import { useState } from "react";
 import { z } from "zod";
 
 const SignUp = () => {
+  const { isLoaded, signUp, setActive } = useSignUp();
+
+  const [verification, setVerification] = useState({
+    state: "default",
+    error: "",
+    code: "",
+  });
+
   const signUpSchema = z.object({
     name: z.string(),
     email: z.string().email(),
@@ -24,7 +34,57 @@ const SignUp = () => {
   });
 
   const onSignUpPress = async (forms: z.infer<typeof signUpSchema>) => {
-    console.log(forms);
+    if (!isLoaded) {
+      return;
+    }
+
+    try {
+      await signUp.create({
+        emailAddress: forms.email,
+        password: forms.password,
+        firstName: forms.name,
+      });
+
+      await signUp.prepareEmailAddressVerification({ strategy: "email_code" });
+
+      setVerification({
+        ...verification,
+        state: "pending",
+      });
+    } catch (e) {
+      console.error(e);
+    }
+  };
+
+  const OnPressVerify = async () => {
+    if (!isLoaded) {
+      return;
+    }
+
+    try {
+      const completeSignUp = await signUp.attemptEmailAddressVerification({
+        code: verification.code,
+      });
+
+      if (completeSignUp.status === "complete") {
+        //TODO where
+        await setActive({ session: completeSignUp.createdSessionId });
+        setVerification({ ...verification, state: "success" });
+      } else {
+        setVerification({
+          ...verification,
+          error: "VERIFICATION_FAILED",
+          state: "failed",
+        });
+      }
+    } catch (e: any) {
+      console.error(e);
+      setVerification({
+        ...verification,
+        error: e.errors[0].longMessage,
+        state: "failed",
+      });
+    }
   };
 
   return (

@@ -1,4 +1,4 @@
-1:24:29
+1:41:37
 
 https://www.youtube.com/watch?v=kmy_YNhl0mw&ab_channel=JavaScriptMastery
 
