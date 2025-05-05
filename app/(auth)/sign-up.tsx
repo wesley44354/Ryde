@@ -7,16 +7,19 @@ import { ThemedText } from "@/components/ThemedText";
 import { useSignUp } from "@clerk/clerk-expo";
 import { useEffect, useState } from "react";
 import OAuth from "@/components/auth/OAuth";
+import { useLoader } from "@/context/Load";
 import { useForm } from "react-hook-form";
 import { router } from "expo-router";
 import { icons } from "@/constants";
 import { z } from "zod";
 
 const SignUp = () => {
+  const { showLoader, hideLoader } = useLoader();
+
   const { isLoaded, signUp, setActive } = useSignUp();
 
   const [verification, setVerification] = useState({
-    state: "success",
+    state: "loading",
     error: "",
     code: "",
   });
@@ -89,9 +92,13 @@ const SignUp = () => {
 
   useEffect(() => {
     if (verification.state === "success") {
+      hideLoader();
       router.replace("/(auth)/verificationModal");
     }
-  }, []);
+    if (verification.state === "loading") {
+      showLoader();
+    }
+  }, [verification.state]);
 
   return (
     <AuthContrainer scrollPaddingTop={200} heightAuthImage="30%">

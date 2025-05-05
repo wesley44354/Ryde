@@ -16,6 +16,7 @@ import {
   DarkTheme as NavigationDarkTheme,
   DefaultTheme as NavigationDefaultTheme,
 } from "@react-navigation/native";
+import { LoaderProvider } from "@/context/Load";
 
 if (typeof setImmediate === "undefined") {
   (global as any).setImmediate = (fn: Function) => {
@@ -77,19 +78,21 @@ function RootLayoutNav() {
   };
 
   return (
-    <ClerkProvider publishableKey={publishableKey} tokenCache={tokenCache}>
-      <ClerkLoaded>
-        <ThemeProvider
-          value={colorScheme === "dark" ? MyDarkTheme : MyLightTheme}
-        >
-          <Stack>
-            <Stack.Screen name="index" options={{ headerShown: false }} />
-            <Stack.Screen name="(root)" options={{ headerShown: false }} />
-            <Stack.Screen name="(auth)" options={{ headerShown: false }} />
-            <Stack.Screen name="+not-found" />
-          </Stack>
-        </ThemeProvider>
-      </ClerkLoaded>
-    </ClerkProvider>
+    <LoaderProvider>
+      <ClerkProvider publishableKey={publishableKey} tokenCache={tokenCache}>
+        <ClerkLoaded>
+          <ThemeProvider
+            value={colorScheme === "dark" ? MyDarkTheme : MyLightTheme}
+          >
+            <Stack>
+              <Stack.Screen name="index" options={{ headerShown: false }} />
+              <Stack.Screen name="(root)" options={{ headerShown: false }} />
+              <Stack.Screen name="(auth)" options={{ headerShown: false }} />
+              <Stack.Screen name="+not-found" />
+            </Stack>
+          </ThemeProvider>
+        </ClerkLoaded>
+      </ClerkProvider>
+    </LoaderProvider>
   );
 }
