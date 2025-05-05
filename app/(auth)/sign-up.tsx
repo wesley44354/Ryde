@@ -5,17 +5,18 @@ import { ThemedButton } from "@/components/ThemedButton";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { ThemedText } from "@/components/ThemedText";
 import { useSignUp } from "@clerk/clerk-expo";
+import { useEffect, useState } from "react";
 import OAuth from "@/components/auth/OAuth";
 import { useForm } from "react-hook-form";
+import { router } from "expo-router";
 import { icons } from "@/constants";
-import { useState } from "react";
 import { z } from "zod";
 
 const SignUp = () => {
   const { isLoaded, signUp, setActive } = useSignUp();
 
   const [verification, setVerification] = useState({
-    state: "default",
+    state: "success",
     error: "",
     code: "",
   });
@@ -34,19 +35,18 @@ const SignUp = () => {
   });
 
   const onSignUpPress = async (forms: z.infer<typeof signUpSchema>) => {
+    router.push("/(auth)/verificationModal");
+
     if (!isLoaded) {
       return;
     }
-
     try {
       await signUp.create({
         emailAddress: forms.email,
         password: forms.password,
         firstName: forms.name,
       });
-
       await signUp.prepareEmailAddressVerification({ strategy: "email_code" });
-
       setVerification({
         ...verification,
         state: "pending",
@@ -87,6 +87,12 @@ const SignUp = () => {
     }
   };
 
+  useEffect(() => {
+    if (verification.state === "success") {
+      router.replace("/(auth)/verificationModal");
+    }
+  }, []);
+
   return (
     <AuthContrainer scrollPaddingTop={200} heightAuthImage="30%">
       <ThemedText type="title" numberOfLines={1} text="CREATE_YOUR_ACCOUNT" />
@@ -104,7 +110,10 @@ const SignUp = () => {
         label="EMAIL"
         control={control}
         icon={icons.email}
+        autoCorrect={false}
+        autoCapitalize="none"
         placeholder="ENTER_EMAIL"
+        keyboardType="email-address"
         onSubmitEditing={() => setFocus("password")}
       />
       <ThemedInputController
@@ -113,6 +122,7 @@ const SignUp = () => {
         label="PASSWORD"
         icon={icons.lock}
         control={control}
+        autoCorrect={false}
         placeholder="ENTER_PASSWORD"
         onSubmitEditing={handleSubmit(onSignUpPress)}
       />

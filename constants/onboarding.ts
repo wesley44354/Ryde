@@ -10,7 +10,7 @@ interface IOnboardingListType {
   description: keyof II18nextTypes;
 }
 
-export const onboarding: IOnboardingListType[] = [
+export const onboardingList: IOnboardingListType[] = [
   {
     id: 1,
     appNameDestack: true,

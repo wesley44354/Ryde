@@ -10,15 +10,19 @@ export const pt: II18nextTypes = {
   PASSWORD: "Senha:",
   LOG_IN: "Conecte-se",
   ENTER_NAME: "Seu nome",
+  VERIFIED: "Verificado!",
   GET_STARTED: "Começar",
   SIGN_UP: "Inscrever-se",
   ENTER_EMAIL: "Seu email",
   ENTER_PASSWORD: "Sua senha",
+  BROWSE_HOME: "Ir para Home",
   LET_GET_STARTED: "Vamos começar",
   CREATE_YOUR_ACCOUNT: "Crie sua conta",
   DON_HAVE_AN_ACCOUNT: "Não tem uma conta?",
   ALREADY_HAVE_AN_ACCOUNT: "Já tem uma conta?",
   LOGIN_IN_WITH_GOOGLE: "Faça login com o Google",
+  YOU_HAVE_SUCCESSFULLY_VERIFIED_YOUR_ACCOUNT:
+    "Você verificou sua conta com sucesso.",
   SIGN_UP_OR_LOG_IN_TO_FIND_OUT_THE_BEST_CAR_FOR_YOU:
     "Cadastre-se ou faça login para descobrir o melhor carro para você",
 

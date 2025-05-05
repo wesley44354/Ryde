@@ -11,8 +11,10 @@ declare interface II18nextTypes {
   LOG_IN: string;
   SIGN_UP: string;
   PASSWORD: string;
+  VERIFIED: string;
   ENTER_NAME: string;
   ENTER_EMAIL: string;
+  BROWSE_HOME: string;
   GET_STARTED: string;
   ENTER_PASSWORD: string;
   LET_GET_STARTED: string;
@@ -20,6 +22,7 @@ declare interface II18nextTypes {
   CREATE_YOUR_ACCOUNT: string;
   LOGIN_IN_WITH_GOOGLE: string;
   ALREADY_HAVE_AN_ACCOUNT: string;
+  YOU_HAVE_SUCCESSFULLY_VERIFIED_YOUR_ACCOUNT: string;
   SIGN_UP_OR_LOG_IN_TO_FIND_OUT_THE_BEST_CAR_FOR_YOU: string;
 
   // validation

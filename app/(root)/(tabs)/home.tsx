@@ -1,8 +1,7 @@
 import { Link } from "expo-router";
-import { Text, SafeAreaView } from "react-native";
+import { Text, View } from "react-native";
 import { SignOutButton } from "@clerk/clerk-react";
 import { SignedIn, SignedOut, useUser } from "@clerk/clerk-expo";
-import { View } from "react-native-reanimated/lib/typescript/Animated";
 
 const Home = () => {
   const { user } = useUser();

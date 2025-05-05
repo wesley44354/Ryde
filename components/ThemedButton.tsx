@@ -30,7 +30,7 @@ const getBgVariantStyle = (variant: Props["bgVariant"]) => {
     case "outline":
       return "bg-transparent border text-secondary-light-900 dark:border-secondary-dark-900";
     default:
-      return "bg-primary-light dark:bg-primary-dark shadow-general-light dark:shadow-white shadow-lg";
+      return "bg-primary-light dark:bg-primary-dark shadow-general-light";
   }
 };
 

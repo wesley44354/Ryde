@@ -35,15 +35,20 @@ const SignIn = () => {
         label="EMAIL"
         control={control}
         icon={icons.email}
+        autoCorrect={false}
+        autoCapitalize="none"
         placeholder="ENTER_EMAIL"
+        keyboardType="email-address"
         onSubmitEditing={() => setFocus("password")}
       />
+
       <ThemedInputController
         name="password"
         secureTextEntry
         label="PASSWORD"
         icon={icons.lock}
         control={control}
+        autoCorrect={false}
         placeholder="ENTER_PASSWORD"
         onSubmitEditing={handleSubmit(onSignInPress)}
       />
