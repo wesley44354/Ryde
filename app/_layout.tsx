@@ -17,6 +17,16 @@ import {
   DefaultTheme as NavigationDefaultTheme,
 } from "@react-navigation/native";
 
+if (typeof setImmediate === "undefined") {
+  (global as any).setImmediate = (fn: Function) => {
+    const wrappedFn = () => fn();
+
+    (wrappedFn as any).__promisify__ = wrappedFn;
+
+    return setTimeout(wrappedFn, 0);
+  };
+}
+
 const publishableKey = process.env.EXPO_PUBLIC_CLERK_PUBLISHABLE_KEY;
 
 SplashScreen.preventAutoHideAsync();

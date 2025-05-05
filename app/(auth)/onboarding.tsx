@@ -3,20 +3,20 @@ import { router } from "expo-router";
 import Swiper from "react-native-swiper";
 import { useRef, useState } from "react";
 import { AppConfig } from "@/constants/appConfig";
+import { Image, SafeAreaView } from "react-native";
 import { ThemedText } from "@/components/ThemedText";
 import ThemedSwiper from "@/components/ThemedSwiper";
-import { TouchableOpacity, View } from "react-native";
 import { onboardingList } from "@/constants/onboarding";
+import { TouchableOpacity, View } from "react-native";
 import { ThemedButton } from "@/components/ThemedButton";
-import { Image, Platform, SafeAreaView } from "react-native";
 
 const onboarding = () => {
   const swiperRef = useRef<Swiper>(null);
   const [activeIndex, setActiveIndex] = useState(1);
-  const isLastSlide = activeIndex === onboarding.length - 1;
+  const isLastSlide = activeIndex === onboardingList.length - 1;
 
   return (
-    <SafeAreaView className="flex-1  items-center pb-[2%] justify-between ">
+    <SafeAreaView className="flex-1 items-center pb-[2%] justify-between ">
       <TouchableOpacity
         className="w-full flex justify-end items-end p-5"
         onPress={() => {
@@ -88,15 +88,9 @@ const onboarding = () => {
         <ThemedButton
           bgVariant="primary"
           onPress={() => {
-            if (isLastSlide) {
-              router.replace("/(auth)/welcome");
-            } else {
-              if (Platform.OS !== "web") {
-                swiperRef.current?.scrollBy(1);
-              } else {
-                setActiveIndex((prev) => prev + 1);
-              }
-            }
+            isLastSlide
+              ? router.replace("/(auth)/welcome")
+              : swiperRef.current?.scrollBy(1);
           }}
           text={isLastSlide ? "GET_STARTED" : "NEXT"}
         />
