@@ -1,6 +1,6 @@
 import React from "react";
-import { ThemedText } from "../ThemedText";
 import { View } from "react-native";
+import { ThemedText } from "../ThemedText";
 
 interface Props {
   labelCenter?: boolean;
@@ -14,7 +14,7 @@ export const ThemedInputContainer = ({
   labelCenter = false,
 }: Props) => {
   return (
-    <View className="flex-1 my-2">
+    <View className="w-full my-2">
       {label && (
         <ThemedText
           type="bold"

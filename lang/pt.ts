@@ -6,6 +6,7 @@ export const pt: II18nextTypes = {
   NAME: "Nome:",
   SKIP: "Pular",
   NEXT: "Próximo",
+  CODE: "Código",
   EMAIL: "E-mail:",
   PASSWORD: "Senha:",
   LOG_IN: "Conecte-se",
@@ -18,6 +19,7 @@ export const pt: II18nextTypes = {
   BROWSE_HOME: "Ir para Home",
   LET_GET_STARTED: "Vamos começar",
   CREATE_YOUR_ACCOUNT: "Crie sua conta",
+  VERIFICATION_MODAL_PLACEHOLDER: "123456",
   DON_HAVE_AN_ACCOUNT: "Não tem uma conta?",
   ALREADY_HAVE_AN_ACCOUNT: "Já tem uma conta?",
   LOGIN_IN_WITH_GOOGLE: "Faça login com o Google",
@@ -27,7 +29,7 @@ export const pt: II18nextTypes = {
     "Cadastre-se ou faça login para descobrir o melhor carro para você",
 
   // validation
-  VALIDATION_SHORT_PASSWORD: "Senha deve ter no mínimo 6 caracteres",
+  VALIDATION_SHORT_PASSWORD: "Senha deve ter no mínimo 8 caracteres",
   VALIDATION_INVALID_EMAIL: "E-mail inválido",
   VALIDATION_REQUIRED: "O campo é obrigatório",
 

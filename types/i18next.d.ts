@@ -4,6 +4,7 @@ import { string } from "zod";
 declare interface II18nextTypes {
   // auth
   OR: string;
+  CODE: string;
   SKIP: string;
   NAME: string;
   NEXT: string;
@@ -22,6 +23,7 @@ declare interface II18nextTypes {
   CREATE_YOUR_ACCOUNT: string;
   LOGIN_IN_WITH_GOOGLE: string;
   ALREADY_HAVE_AN_ACCOUNT: string;
+  VERIFICATION_MODAL_PLACEHOLDER: string;
   YOU_HAVE_SUCCESSFULLY_VERIFIED_YOUR_ACCOUNT: string;
   SIGN_UP_OR_LOG_IN_TO_FIND_OUT_THE_BEST_CAR_FOR_YOU: string;
 

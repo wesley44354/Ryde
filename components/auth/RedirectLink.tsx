@@ -10,7 +10,7 @@ interface Props {
 
 const AuthRedirectLink = ({ i18nLink, i18nText }: Props) => {
   return (
-    <View className="flex items-center justify-center flex-row gap-1">
+    <View className="flex items-baseline justify-center flex-row gap-1">
       <ThemedText color="general" colorIntensity="200" text={i18nText} />
       <TouchableOpacity
         onPress={() => {

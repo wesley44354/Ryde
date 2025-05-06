@@ -14,6 +14,7 @@ import {
   TextInput,
   TextInputProps,
   useColorScheme,
+  StyleSheet,
 } from "react-native";
 
 export interface InputProps extends TextInputProps {
@@ -26,7 +27,7 @@ export interface InputProps extends TextInputProps {
   label?: keyof II18nextTypes;
   onSubmitEditing?: () => void;
   placeholder?: keyof II18nextTypes;
-  onChangeText: (text: string) => void;
+  onChangeText: (text: string | undefined) => void;
   keyboardType?: "default" | "email-address" | "numeric";
   inputMode?: "none" | "text" | "numeric" | "tel" | "search" | "email" | "url";
 }
@@ -58,25 +59,30 @@ export const ThemedInput = forwardRef<TextInput, InputProps>(
       if (mask) {
         value = masks[mask](String(value));
       }
-      onChangeText && onChangeText(value);
+      onChangeText && onChangeText(value === "" ? undefined : value);
     };
 
-    const borderColorClass = (() => {
-      switch (true) {
-        case !!error:
-          return "border-2 border-danger-light dark:border-danger-dark";
-        case isFocused:
-          return "border-2 border-primary-light dark:border-primary-dark";
-        default:
-          return "border-none";
+    const shadowStyle = () => {
+      if (error) {
+        return `0 0 0 1px ${colors.danger[colorScheme!]}`;
       }
-    })();
+
+      if (isFocused) {
+        return `0 0 0 1px ${colors.primary[colorScheme!].DEFAULT}`;
+      }
+
+      return "none";
+    };
 
     return (
-      <Pressable onPress={Platform.OS !== "web" ? Keyboard.dismiss : undefined}>
+      <Pressable
+        className="w-full"
+        onPress={Platform.OS !== "web" ? Keyboard.dismiss : undefined}
+      >
         <ThemedInputContainer label={label ? t(label) : undefined}>
           <View
-            className={`h-12 flex-row items-center justify-between rounded-3xl ${borderColorClass} bg-general-light-500 dark:bg-general-dark-500`}
+            style={{ boxShadow: shadowStyle() }}
+            className="h-12 flex-row items-center justify-between rounded-3xl bg-general-light-500 dark:bg-general-dark-500"
           >
             {icon && (
               <View className="h-[50%] aspect-square ml-5 flex items-center">
@@ -98,7 +104,7 @@ export const ThemedInput = forwardRef<TextInput, InputProps>(
               onFocus={() => setIsFocused(true)}
               onBlur={() => setIsFocused(false)}
               cursorColor={colors.primary[colorScheme!].DEFAULT}
-              selectionColor={colors.primary[colorScheme!].DEFAULT}
+              // selectionColor={colors.primary[colorScheme!].DEFAULT}
               placeholder={placeholder ? t(placeholder) : undefined}
               placeholderTextColor={colors.general[colorScheme!][800]}
               className="flex-1 h-full outline-0 px-4 text-[16px] color-secondary-light-900 dark:color-secondary-dark-900"

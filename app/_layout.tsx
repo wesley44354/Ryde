@@ -17,6 +17,7 @@ import {
   DefaultTheme as NavigationDefaultTheme,
 } from "@react-navigation/native";
 import { LoaderProvider } from "@/context/Load";
+import { StatusBar } from "expo-status-bar";
 
 if (typeof setImmediate === "undefined") {
   (global as any).setImmediate = (fn: Function) => {
@@ -79,6 +80,7 @@ function RootLayoutNav() {
 
   return (
     <LoaderProvider>
+      <StatusBar translucent />
       <ClerkProvider publishableKey={publishableKey} tokenCache={tokenCache}>
         <ClerkLoaded>
           <ThemeProvider

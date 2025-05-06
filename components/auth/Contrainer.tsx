@@ -1,11 +1,11 @@
 import {
+  View,
+  ScrollView,
   DimensionValue,
   KeyboardAvoidingView,
-  ScrollView,
-  View,
 } from "react-native";
-import AuthImageTop from "./ImageTop";
 import React from "react";
+import AuthImageTop from "./ImageTop";
 
 interface Props {
   scrollPaddingTop: DimensionValue | undefined;
@@ -22,11 +22,13 @@ const AuthContrainer = ({
     <View className="flex-1">
       <AuthImageTop height={heightAuthImage} />
       <KeyboardAvoidingView className="flex-1" behavior={"padding"}>
-        <ScrollView
-          className={`pr-5 pl-5 pt-${scrollPaddingTop}`}
-          style={{ paddingTop: scrollPaddingTop }}
-        >
-          <View className="gap-8 pb-5 z-10">{children}</View>
+        <ScrollView className={`pr-5 pl-5 `}>
+          <View
+            className="gap-10 pb-10 z-10"
+            style={{ paddingTop: scrollPaddingTop }}
+          >
+            {children}
+          </View>
         </ScrollView>
       </KeyboardAvoidingView>
     </View>

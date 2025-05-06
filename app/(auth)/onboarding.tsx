@@ -18,7 +18,7 @@ const onboarding = () => {
   return (
     <SafeAreaView className="flex-1 items-center pb-[2%] justify-between ">
       <TouchableOpacity
-        className="w-full flex justify-end items-end p-5"
+        className="w-full flex justify-end items-end p-5 pt-10"
         onPress={() => {
           router.replace("/(auth)/welcome");
         }}

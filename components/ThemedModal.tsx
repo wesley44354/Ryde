@@ -10,7 +10,6 @@ interface Props {
 const ThemedModal = ({ children }: Props) => {
   return (
     <ReactNativeModal
-      avoidKeyboard
       isVisible={true}
       onBackdropPress={() => {
         if (router.canGoBack()) {
@@ -19,7 +18,7 @@ const ThemedModal = ({ children }: Props) => {
       }}
     >
       <View
-        className={`max-h-[85%] xl:w-[50%] xl:self-center overflow-hidden gap-10 rounded-lg pr-5 pl-5 pt-10 pb-10 flex items-center justify-center  bg-white dark:bg-secondary-dark-100 `}
+        className={`max-h-[85%] xl:w-[50%] xl:self-center gap-10 rounded-lg pr-5 pl-5 pt-10 pb-10 flex items-center justify-center  bg-white dark:bg-secondary-dark-100`}
       >
         {children}
       </View>

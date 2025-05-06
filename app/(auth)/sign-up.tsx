@@ -1,11 +1,11 @@
 import { ThemedInputController } from "@/components/ThemedInput/ThemedInputController";
+import { useVerificationStore } from "@/stores/auth/VerificationStore";
 import AuthRedirectLink from "@/components/auth/RedirectLink";
 import AuthContrainer from "@/components/auth/Contrainer";
 import { ThemedButton } from "@/components/ThemedButton";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { ThemedText } from "@/components/ThemedText";
 import { useSignUp } from "@clerk/clerk-expo";
-import { useEffect, useState } from "react";
 import OAuth from "@/components/auth/OAuth";
 import { useLoader } from "@/context/Load";
 import { useForm } from "react-hook-form";
@@ -15,19 +15,13 @@ import { z } from "zod";
 
 const SignUp = () => {
   const { showLoader, hideLoader } = useLoader();
-
-  const { isLoaded, signUp, setActive } = useSignUp();
-
-  const [verification, setVerification] = useState({
-    state: "loading",
-    error: "",
-    code: "",
-  });
+  const { isLoaded, signUp } = useSignUp();
+  const { verification, setVerification } = useVerificationStore();
 
   const signUpSchema = z.object({
     name: z.string(),
     email: z.string().email(),
-    password: z.string().min(6),
+    password: z.string().min(8),
   });
 
   type SignUpSchemaType = z.infer<typeof signUpSchema>;
@@ -38,11 +32,10 @@ const SignUp = () => {
   });
 
   const onSignUpPress = async (forms: z.infer<typeof signUpSchema>) => {
-    router.push("/(auth)/verificationModal");
-
     if (!isLoaded) {
       return;
     }
+    showLoader();
     try {
       await signUp.create({
         emailAddress: forms.email,
@@ -54,51 +47,13 @@ const SignUp = () => {
         ...verification,
         state: "pending",
       });
+      router.push("/(auth)/verificationModal");
     } catch (e) {
       console.error(e);
-    }
-  };
-
-  const OnPressVerify = async () => {
-    if (!isLoaded) {
-      return;
-    }
-
-    try {
-      const completeSignUp = await signUp.attemptEmailAddressVerification({
-        code: verification.code,
-      });
-
-      if (completeSignUp.status === "complete") {
-        //TODO where
-        await setActive({ session: completeSignUp.createdSessionId });
-        setVerification({ ...verification, state: "success" });
-      } else {
-        setVerification({
-          ...verification,
-          error: "VERIFICATION_FAILED",
-          state: "failed",
-        });
-      }
-    } catch (e: any) {
-      console.error(e);
-      setVerification({
-        ...verification,
-        error: e.errors[0].longMessage,
-        state: "failed",
-      });
-    }
-  };
-
-  useEffect(() => {
-    if (verification.state === "success") {
+    } finally {
       hideLoader();
-      router.replace("/(auth)/verificationModal");
     }
-    if (verification.state === "loading") {
-      showLoader();
-    }
-  }, [verification.state]);
+  };
 
   return (
     <AuthContrainer scrollPaddingTop={200} heightAuthImage="30%">
