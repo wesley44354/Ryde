@@ -33,17 +33,16 @@ Este é um clone do aplicativo de transporte **Ryde**, inspirado no design do [F
 
 ## 🛠 Funcionalidades em desenvolvimento
 
-- [x] Navegação com Expo Router  
-- [x] Suporte ao tema escuro  
-- [x] Estilização com NativeWind  
-- [x] Suporte completo para Web  
-- [x] Configuração de i18n  
-- [ ] Sistema de autenticação (em andamento)  
-- [ ] Integração com APIs externas  
-- [ ] Tela de mapa com localização em tempo real  
+- [x] Navegação com Expo Router
+- [x] Suporte ao tema escuro
+- [x] Estilização com NativeWind
+- [x] Suporte completo para Web
+- [x] Configuração de i18n
+- [ ] Sistema de autenticação (em andamento)
+- [ ] Integração com APIs externas
+- [ ] Tela de mapa com localização em tempo real
 
 ---
-
 
 ## 🧪 Como Rodar o Projeto
 
@@ -57,23 +56,28 @@ yarn install
 
 
 # Configuração do Projeto
- 
-Dentro do arquivo ./constants/appConfig.ts, você precisará configurar algumas informações do projeto, incluindo variáveis de ambiente. Exemplo de configuração:
-    
+
+## Dentro do arquivo ./constants/appConfig.ts, você precisará configurar algumas informações do projeto, incluindo variáveis de ambiente. Exemplo de configuração:
+
  export default {
-  name: "Ryde",  // Nome do aplicativo
-  slug: "ryde_app",  // Slug do projeto (utilizado no Expo)
-  owner: "ryde_app",  // Proprietário do projeto
+  name: "#####",  // Nome do aplicativo
+  slug: "#####",  // Slug do projeto (utilizado no Expo)
+  owner: "#####",  // Proprietário do projeto
   version: "1.0.0",  // Versão do aplicativo
   runtimeVersion: "1.0.0",  // Versão de runtime (necessário no Expo)
-  identifier: "com.ryde.ryde_app",  // Identificador único do app (geralmente utilizado no Android/iOS)
+  identifier: "#####",  // Identificador único do app (geralmente utilizado no Android/iOS)
   extra: {
-    clerkPublishableKey: process.env.EXPO_PUBLIC_CLERK_PUBLISHABLE_KEY,  // Chave pública do Clerk
+    ## Adcionar no site expo, no seu projeto em Variáveis ​​de ambiente
+    clerkPublishableKey: process.env.CLERK_PUBLISHABLE_KEY, // Chave pública do Clerk
     eas: {
-      projectId: "76c83c83-5fa9-44e4-8440-736815537755",  // ID do projeto no Expo Application Services (EAS)
+      projectId: "#####",  // ID do projeto no Expo Application Services (EAS)
     },
   },
 };
 
+# Rode o eas env:pull para adicionar o .env.local
+yarn env
+
 # Rode no Expo
 yarn start
+```
