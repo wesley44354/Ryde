@@ -59,6 +59,8 @@ yarn install
 
 ## Dentro do arquivo ./constants/appConfig.ts, você precisará configurar algumas informações do projeto, incluindo variáveis de ambiente. Exemplo de configuração:
 
+
+```bash
  export default {
   name: "#####",  // Nome do aplicativo
   slug: "#####",  // Slug do projeto (utilizado no Expo)
@@ -74,6 +76,7 @@ yarn install
     },
   },
 };
+```
 
 # Rode o eas env:pull para adicionar o .env.local
 yarn env
