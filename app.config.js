@@ -35,12 +35,8 @@ export default {
   },
   updates: {
     fallbackToCacheTimeout: 0,
-    url: "https://u.expo.dev/" + AppConfig.project_id,
+    url: "https://u.expo.dev/" + AppConfig.extra.eas.projectId,
   },
-  extra: {
-    eas: {
-      projectId: AppConfig.project_id,
-    },
-  },
+  extra: AppConfig.extra,
 }
 

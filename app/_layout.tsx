@@ -4,20 +4,23 @@ import "react-native-reanimated";
 import { useEffect } from "react";
 import { Stack } from "expo-router";
 import { useFonts } from "expo-font";
+import Constants from "expo-constants";
 import { colors } from "@/constants/colors";
 export { ErrorBoundary } from "expo-router";
+import { StatusBar } from "expo-status-bar";
 import { useColorScheme } from "react-native";
+import { LoaderProvider } from "@/context/Load";
 import { setZodErrorMessages } from "@/lang/zod";
-import { ClerkLoaded, ClerkProvider } from "@clerk/clerk-expo";
 import * as SplashScreen from "expo-splash-screen";
+import { ClerkLoaded, ClerkProvider } from "@clerk/clerk-expo";
 import { tokenCache } from "@clerk/clerk-expo/token-cache";
 import {
   ThemeProvider,
   DarkTheme as NavigationDarkTheme,
   DefaultTheme as NavigationDefaultTheme,
 } from "@react-navigation/native";
-import { LoaderProvider } from "@/context/Load";
-import { StatusBar } from "expo-status-bar";
+
+const clerkKey = Constants.expoConfig?.extra?.clerkPublishableKey;
 
 if (typeof setImmediate === "undefined") {
   (global as any).setImmediate = (fn: Function) => {
@@ -28,8 +31,6 @@ if (typeof setImmediate === "undefined") {
     return setTimeout(wrappedFn, 0);
   };
 }
-
-const publishableKey = process.env.EXPO_PUBLIC_CLERK_PUBLISHABLE_KEY;
 
 SplashScreen.preventAutoHideAsync();
 
@@ -81,7 +82,7 @@ function RootLayoutNav() {
   return (
     <LoaderProvider>
       <StatusBar translucent />
-      <ClerkProvider publishableKey={publishableKey} tokenCache={tokenCache}>
+      <ClerkProvider publishableKey={clerkKey} tokenCache={tokenCache}>
         <ClerkLoaded>
           <ThemeProvider
             value={colorScheme === "dark" ? MyDarkTheme : MyLightTheme}

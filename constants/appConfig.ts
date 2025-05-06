@@ -1,9 +1,14 @@
 export const AppConfig = {
   name: "Ryde",
-  slug: "ryde",
-  owner: "ryde",
+  slug: "rydeapp",
+  owner: "ryde_app",
   version: "1.0.0",
   runtimeVersion: "1.0.0",
-  identifier: "com.ryde.ryde",
-  project_id: "edcb77d2-675c-4d47-8e00-d059afdd5df1",
+  identifier: "com.ryde.ryde_app",
+  extra: {
+    clerkPublishableKey: process.env.CLERK_PUBLISHABLE_KEY,
+    eas: {
+      projectId: "76c83c83-5fa9-44e4-8440-736815537755",
+    },
+  },
 };
