@@ -46,7 +46,7 @@ Este é um clone do aplicativo de transporte **Ryde**, inspirado no design do [F
 
 ## 🧪 Como Rodar o Projeto
 
-```bash
+
 # Clone o repositório
 git clone https://github.com/wesley44354/Ryde.git
 cd Ryde
@@ -80,4 +80,4 @@ yarn env
 
 # Rode no Expo
 yarn start
-```
+
