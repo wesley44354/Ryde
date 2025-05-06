@@ -44,6 +44,7 @@ Este é um clone do aplicativo de transporte **Ryde**, inspirado no design do [F
 
 ---
 
+
 ## 🧪 Como Rodar o Projeto
 
 ```bash
@@ -53,6 +54,26 @@ cd Ryde
 
 # Instale as dependências
 yarn install
+
+
+# Configuração do Projeto
+ 
+Dentro do arquivo ./constants/appConfig.ts, você precisará configurar algumas informações do projeto, incluindo variáveis de ambiente. Exemplo de configuração:
+    
+ export default {
+  name: "Ryde",  // Nome do aplicativo
+  slug: "ryde_app",  // Slug do projeto (utilizado no Expo)
+  owner: "ryde_app",  // Proprietário do projeto
+  version: "1.0.0",  // Versão do aplicativo
+  runtimeVersion: "1.0.0",  // Versão de runtime (necessário no Expo)
+  identifier: "com.ryde.ryde_app",  // Identificador único do app (geralmente utilizado no Android/iOS)
+  extra: {
+    clerkPublishableKey: process.env.EXPO_PUBLIC_CLERK_PUBLISHABLE_KEY,  // Chave pública do Clerk
+    eas: {
+      projectId: "76c83c83-5fa9-44e4-8440-736815537755",  // ID do projeto no Expo Application Services (EAS)
+    },
+  },
+};
 
 # Rode no Expo
 yarn start
