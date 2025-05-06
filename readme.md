@@ -69,7 +69,7 @@ yarn install
   runtimeVersion: "1.0.0",  // Versão de runtime (necessário no Expo)
   identifier: "#####",  // Identificador único do app (geralmente utilizado no Android/iOS)
   extra: {
-    ## Adcionar no site expo, no seu projeto em Variáveis ​​de ambiente
+     // Adcionar no site expo, no seu projeto em Variáveis ​​de ambiente
     clerkPublishableKey: process.env.CLERK_PUBLISHABLE_KEY, // Chave pública do Clerk
     eas: {
       projectId: "#####",  // ID do projeto no Expo Application Services (EAS)
