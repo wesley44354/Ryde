@@ -59,6 +59,7 @@ const VerificationModal = () => {
           <ThemedInput
             label="CODE"
             icon={icons.lock}
+            keyboardType="numeric"
             value={verification.code}
             onSubmitEditing={OnPressVerify}
             onChangeText={(code) => {

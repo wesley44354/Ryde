@@ -1,4 +1,4 @@
-import { AppConfig } from "./constants/appConfig.ts";
+const AppConfig = require("./constants/appConfig.ts");
 
 export default {
   name: AppConfig.name,

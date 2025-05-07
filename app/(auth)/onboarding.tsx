@@ -2,7 +2,7 @@ import i18n from "@/lang/i18n";
 import { router } from "expo-router";
 import Swiper from "react-native-swiper";
 import { useRef, useState } from "react";
-import { AppConfig } from "@/constants/appConfig";
+const AppConfig = require("@/constants/appConfig");
 import { Image, SafeAreaView } from "react-native";
 import { ThemedText } from "@/components/ThemedText";
 import ThemedSwiper from "@/components/ThemedSwiper";
