@@ -34,10 +34,9 @@ const VerificationModal = () => {
         });
       }
     } catch (e: any) {
-      console.error(e);
       setVerification({
         ...verification,
-        error: e.errors[0].longMessage,
+        error: e.errors[0].longMessage || e.errors[0].message,
         state: "failed",
       });
     }
@@ -45,14 +44,21 @@ const VerificationModal = () => {
 
   return (
     <ThemedModal>
-      {verification.state === "pending" && (
+      {(verification.state === "pending" ||
+        verification.state === "failed") && (
         <>
-          <View>
-            <ThemedText className="self-start" type="title" text="VERIFIED" />
+          <View className="self-start gap-2">
             <ThemedText
-              type="subtitle"
+              className="self-start font-bold"
+              text="VERIFICATION"
+              type="title"
+            />
+
+            <ThemedText
+              type="default"
               className="self-start"
-              text="YOU_HAVE_SUCCESSFULLY_VERIFIED_YOUR_ACCOUNT"
+              i18nTextArgs={{ email: verification.email }}
+              text="WEVE_SENT_A_VERIFICATION_CODE_TO"
             />
           </View>
 
@@ -61,7 +67,7 @@ const VerificationModal = () => {
             icon={icons.lock}
             keyboardType="numeric"
             value={verification.code}
-            onSubmitEditing={OnPressVerify}
+            error={verification.error}
             onChangeText={(code) => {
               if (code !== undefined) {
                 setVerification({ ...verification, code });
@@ -69,8 +75,16 @@ const VerificationModal = () => {
             }}
             placeholder="VERIFICATION_MODAL_PLACEHOLDER"
           />
+
+          <ThemedButton
+            text="VERIFY_EMAIL"
+            bgVariant="success"
+            onPress={OnPressVerify}
+            disabled={verification.code.length <= 5}
+          />
         </>
       )}
+
       {verification.state === "success" && (
         <>
           <View className="w-[40%] aspect-square flex items-center justify-center">

@@ -5,6 +5,7 @@ import AuthContrainer from "@/components/auth/Contrainer";
 import { ThemedButton } from "@/components/ThemedButton";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { ThemedText } from "@/components/ThemedText";
+import Toast from "react-native-toast-message";
 import { useSignUp } from "@clerk/clerk-expo";
 import OAuth from "@/components/auth/OAuth";
 import { useLoader } from "@/context/Load";
@@ -19,15 +20,19 @@ const SignUp = () => {
   const { verification, setVerification } = useVerificationStore();
 
   const signUpSchema = z.object({
-    name: z.string(),
-    email: z.string().email(),
+    nameComplet: z.string().min(3).regex(/\s/, "VALIDATION_FULL_NAME_REQUIRED"),
     password: z.string().min(8),
+    email: z.string().email(),
   });
 
   type SignUpSchemaType = z.infer<typeof signUpSchema>;
 
   const { control, handleSubmit, setFocus } = useForm<SignUpSchemaType>({
-    defaultValues: {},
+    defaultValues: {
+      nameComplet: "Wesley Alves",
+      email: "wesleyalvesdeveloper99@gmail.com",
+      password: "123456Wwee",
+    },
     resolver: zodResolver(signUpSchema),
   });
 
@@ -37,19 +42,27 @@ const SignUp = () => {
     }
     showLoader();
     try {
+      const [firstName, ...lastName] = forms.nameComplet.split(" ");
+      const fullLastName = lastName.join(" ");
       await signUp.create({
         emailAddress: forms.email,
         password: forms.password,
-        firstName: forms.name,
+        lastName: fullLastName,
+        firstName,
       });
       await signUp.prepareEmailAddressVerification({ strategy: "email_code" });
       setVerification({
         ...verification,
+        email: forms.email,
         state: "pending",
       });
       router.push("/(auth)/verificationModal");
-    } catch (e) {
-      console.error(e);
+    } catch (e: any) {
+      Toast.show({
+        type: "error",
+        text1: "ERROR",
+        text2: e.errors[0].longMessage || e.errors[0].message,
+      });
     } finally {
       hideLoader();
     }
@@ -60,11 +73,11 @@ const SignUp = () => {
       <ThemedText type="title" numberOfLines={1} text="CREATE_YOUR_ACCOUNT" />
 
       <ThemedInputController
-        name="name"
-        label="NAME"
         control={control}
+        name="nameComplet"
         icon={icons.person}
-        placeholder="ENTER_NAME"
+        label="NAME_COMPLET"
+        placeholder="ENTER_NAME_COMPLET"
         onSubmitEditing={() => setFocus("email")}
       />
       <ThemedInputController

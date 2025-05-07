@@ -39,9 +39,9 @@ const getTextVariantStyle = (variant: Props["bgVariant"]) => {
     case "primary":
       return "text-white";
     case "danger":
-      return "text-danger-light-100  dark:text-danger-dark-100";
+      return "text-white";
     case "success":
-      return "text-success-light-100 dark:text-success-dark-100";
+      return "text-white";
     default:
       return "text-secondary-light-900 dark:text-secondary-dark-900";
   }

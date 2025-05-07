@@ -11,7 +11,9 @@ export const setZodErrorMessages = () => {
           };
         }
         return {
-          message: i18n.t("VALIDATION_SHORT_PASSWORD"),
+          message: i18n.t("VALIDATION_SHORT_PASSWORD", {
+            min: error.minimum,
+          }),
         };
       case "invalid_type":
         return {
@@ -21,6 +23,12 @@ export const setZodErrorMessages = () => {
         if (error.validation === "email") {
           return {
             message: i18n.t("VALIDATION_INVALID_EMAIL"),
+          };
+        }
+
+        if (error.message === "VALIDATION_FULL_NAME_REQUIRED") {
+          return {
+            message: i18n.t("VALIDATION_FULL_NAME_REQUIRED"),
           };
         }
         return { message: error.message };

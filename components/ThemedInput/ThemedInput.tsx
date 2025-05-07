@@ -14,8 +14,8 @@ import {
   TextInput,
   TextInputProps,
   useColorScheme,
-  StyleSheet,
 } from "react-native";
+import { Ionicons } from "@expo/vector-icons";
 
 export interface InputProps extends TextInputProps {
   icon?: any;
@@ -53,13 +53,14 @@ export const ThemedInput = forwardRef<TextInput, InputProps>(
     const { t } = useTranslation();
     const colorScheme = useColorScheme();
     const [isFocused, setIsFocused] = useState(false);
+    const [showPassword, setShowPassword] = useState(false);
 
     const handleOnChangeText = (text: string) => {
       let value = text;
       if (mask) {
         value = masks[mask](String(value));
       }
-      onChangeText && onChangeText(value === "" ? undefined : value);
+      onChangeText && onChangeText(value);
     };
 
     const shadowStyle = () => {
@@ -100,16 +101,27 @@ export const ThemedInput = forwardRef<TextInput, InputProps>(
               keyboardType={keyboardType}
               onSubmitEditing={onSubmitEditing}
               onChangeText={handleOnChangeText}
-              secureTextEntry={secureTextEntry}
+              secureTextEntry={secureTextEntry && !showPassword}
               onFocus={() => setIsFocused(true)}
               onBlur={() => setIsFocused(false)}
               cursorColor={colors.primary[colorScheme!].DEFAULT}
-              // selectionColor={colors.primary[colorScheme!].DEFAULT}
               placeholder={placeholder ? t(placeholder) : undefined}
-              placeholderTextColor={colors.general[colorScheme!][800]}
+              placeholderTextColor={colors.general[colorScheme!][400]}
               className="flex-1 h-full outline-0 px-4 text-[16px] color-secondary-light-900 dark:color-secondary-dark-900"
               {...rest}
             />
+            {secureTextEntry && (
+              <Pressable
+                className="pr-4 pl-2"
+                onPress={() => setShowPassword((prev) => !prev)}
+              >
+                <Ionicons
+                  name={showPassword ? "eye-off" : "eye"}
+                  size={20}
+                  color={colors.general[colorScheme!][800]}
+                />
+              </Pressable>
+            )}
           </View>
           {!!error && (
             <Text className="text-xs mt-1 ml-2 text-danger-light dark:text-danger-dark">

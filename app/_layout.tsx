@@ -9,11 +9,13 @@ import { colors } from "@/constants/colors";
 export { ErrorBoundary } from "expo-router";
 import { StatusBar } from "expo-status-bar";
 import { useColorScheme } from "react-native";
+import Toast from "react-native-toast-message";
 import { LoaderProvider } from "@/context/Load";
 import { setZodErrorMessages } from "@/lang/zod";
 import * as SplashScreen from "expo-splash-screen";
-import { ClerkLoaded, ClerkProvider } from "@clerk/clerk-expo";
+import { ThemedToast } from "@/components/ThemedToast";
 import { tokenCache } from "@clerk/clerk-expo/token-cache";
+import { ClerkLoaded, ClerkProvider } from "@clerk/clerk-expo";
 import {
   ThemeProvider,
   DarkTheme as NavigationDarkTheme,
@@ -82,6 +84,7 @@ function RootLayoutNav() {
   return (
     <LoaderProvider>
       <StatusBar translucent />
+
       <ClerkProvider publishableKey={clerkKey} tokenCache={tokenCache}>
         <ClerkLoaded>
           <ThemeProvider
@@ -96,6 +99,18 @@ function RootLayoutNav() {
           </ThemeProvider>
         </ClerkLoaded>
       </ClerkProvider>
+
+      <Toast
+        autoHide
+        swipeable
+        avoidKeyboard
+        position="bottom"
+        config={{
+          success: (props) => <ThemedToast {...props} type="success" />,
+          error: (props) => <ThemedToast {...props} type="error" />,
+          info: (props) => <ThemedToast {...props} type="info" />,
+        }}
+      />
     </LoaderProvider>
   );
 }

@@ -10,8 +10,8 @@ const Layout = () => {
       <Stack.Screen
         name="verificationModal"
         options={{
+          presentation: "transparentModal",
           headerShown: false,
-          presentation: "card",
         }}
       />
     </Stack>
