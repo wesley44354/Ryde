@@ -48,7 +48,7 @@ Este é um clone do aplicativo de transporte **Ryde**, inspirado no design do [F
 
 # Clone o repositório
 
-git clone https://github.com/wesley44354/Ryde.git
+git clone https://github.com/wesleyalvesdeveloper99/Ryde.git
 cd Ryde
 
 # Instale as dependências
