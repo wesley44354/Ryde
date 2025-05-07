@@ -12,31 +12,26 @@ export default {
   icon: "./assets/images/icon.png",
   runtimeVersion: AppConfig.runtimeVersion,
   ios: {
-    supportsTablet: true
+    supportsTablet: true,
   },
   android: {
     adaptiveIcon: {
       foregroundImage: "./assets/images/adaptive-icon.png",
-      backgroundColor: "#ffffff"
-    }
+      backgroundColor: "#ffffff",
+    },
   },
   web: {
     bundler: "metro",
     output: "static",
-    favicon: "./assets/images/favicon.png"
+    favicon: "./assets/images/favicon.png",
   },
-  plugins: [
-    "expo-font",
-    "expo-router",
-    "expo-web-browser"
-  ],
+  plugins: ["expo-font", "expo-router", "expo-web-browser"],
   experiments: {
-    typedRoutes: true
+    typedRoutes: true,
   },
   updates: {
     fallbackToCacheTimeout: 0,
     url: "https://u.expo.dev/" + AppConfig.extra.eas.projectId,
   },
   extra: AppConfig.extra,
-}
-
+};
