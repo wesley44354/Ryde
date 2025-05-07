@@ -8,7 +8,7 @@
     "web": "expo start --web",
     "android": "expo start --android",
     "env": "eas env:pull --environment development",
-    "export:web": "npx expo export --platform web"
+    "deploy": "npx expo export --platform web --output-dir docs && git subtree push --prefix docs origin site"
   },
   "dependencies": {
     "@clerk/clerk-expo": "^2.10.7",
