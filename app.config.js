@@ -8,7 +8,6 @@ export default {
   scheme: AppConfig.slug,
   orientation: "portrait",
   version: AppConfig.version,
-  assetBundlePatterns: ["**/*"],
   userInterfaceStyle: "automatic",
   icon: "./assets/images/icon.png",
   runtimeVersion: AppConfig.runtimeVersion,
