@@ -84,3 +84,8 @@ yarn env
 # Rode no Expo
 
 yarn start
+
+---
+
+> Desenvolvido com 💻 por Wesley Alves.
+
