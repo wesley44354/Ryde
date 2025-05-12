@@ -47,6 +47,7 @@ const ThemedSwiperWeb = forwardRef<Swiper, SwiperProps>((props, ref: any) => {
       style={{ width }}
       index={index.current}
       onScroll={handleScroll}
+      children={<View style={{ width: width }}>{props.children}</View>}
       scrollEventThrottle={1000}
       decelerationRate={0}
       dot={

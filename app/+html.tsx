@@ -16,7 +16,10 @@ export default function Root({ children }: { children: React.ReactNode }) {
 
         <style dangerouslySetInnerHTML={{ __html: customStyles }} />
       </head>
-      <body>{children}</body>
+      <body>
+        {children}
+        <div id="clerk-captcha" />
+      </body>
     </html>
   );
 }
