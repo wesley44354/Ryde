@@ -11,18 +11,6 @@ export default function Root({ children }: { children: React.ReactNode }) {
           name="viewport"
           content="width=device-width, initial-scale=1, shrink-to-fit=no"
         />
-        <link
-          href="https://fonts.googleapis.com/icon?family=Material+Icons"
-          rel="stylesheet"
-        />
-        <link
-          rel="stylesheet"
-          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
-        />
-        <link
-          href="https://cdn.jsdelivr.net/npm/ionicons@5.5.2/dist/css/ionicons.min.css"
-          rel="stylesheet"
-        />
 
         <ScrollViewStyleReset />
 
@@ -37,14 +25,29 @@ export default function Root({ children }: { children: React.ReactNode }) {
 }
 
 const customStyles = `
-  body {
-    margin: 0;
-    padding: 0;
-    overflow: hidden;
-    position: relative;
-    background-color: ${colors.background.light};
+  * {
+    touch-action: cross-slide-y cross-slide-x;
+    -webkit-tap-highlight-color: transparent;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    -webkit-overflow-scrolling: touch;
+    -webkit-touch-callout: none;
+    -webkit-user-drag: none;
+    scroll-behavior: smooth; 
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
   }
     
+  html, body {
+    background-color: ${colors.background.light};
+    overscroll-behavior-y: contain;
+    touch-action: none;
+    position: relative;
+    overflow: hidden;
+    height: 100dvh;
+    margin: 0;
+  }
 
   input,
   textarea,

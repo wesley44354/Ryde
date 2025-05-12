@@ -1,4 +1,5 @@
 import { colors } from "@/constants/colors";
+import { Ionicons } from "@expo/vector-icons";
 import { useTranslation } from "react-i18next";
 import { II18nextTypes } from "@/types/i18next";
 import React, { useState, forwardRef } from "react";
@@ -15,7 +16,6 @@ import {
   TextInputProps,
   useColorScheme,
 } from "react-native";
-import { Ionicons } from "@expo/vector-icons";
 
 export interface InputProps extends TextInputProps {
   icon?: any;
