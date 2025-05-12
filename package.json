@@ -7,8 +7,8 @@
     "ios": "expo start --ios",
     "web": "expo start --web",
     "android": "expo start --android",
-    "export": "yarn expo export -p web",
-    "env": "eas env:pull --environment development"
+    "env": "eas env:pull --environment development",
+    "export": "yarn expo export -p web && Copy-Item -Path vercel.json -Destination dist/"
   },
   "dependencies": {
     "@clerk/clerk-expo": "^2.10.7",
