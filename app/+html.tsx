@@ -11,6 +11,18 @@ export default function Root({ children }: { children: React.ReactNode }) {
           name="viewport"
           content="width=device-width, initial-scale=1, shrink-to-fit=no"
         />
+        <link
+          href="https://fonts.googleapis.com/icon?family=Material+Icons"
+          rel="stylesheet"
+        />
+        <link
+          rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+        />
+        <link
+          href="https://cdn.jsdelivr.net/npm/ionicons@5.5.2/dist/css/ionicons.min.css"
+          rel="stylesheet"
+        />
 
         <ScrollViewStyleReset />
 
@@ -26,15 +38,32 @@ export default function Root({ children }: { children: React.ReactNode }) {
 
 const customStyles = `
   body {
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
     position: relative;
     background-color: ${colors.background.light};
   }
     
-  input:focus {
+
+  input,
+  textarea,
+  select {
+    -webkit-appearance: none;
+    appearance: none;
     outline: none !important;
     box-shadow: none !important;
+    background: transparent;
+    border: none;
   }
 
+  #clerk-captcha {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 9999;
+  }
 
   ::-webkit-scrollbar {
     width: 0.5rem;
