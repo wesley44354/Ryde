@@ -29,6 +29,12 @@ const customStyles = `
     position: relative;
     background-color: ${colors.background.light};
   }
+    
+  input:focus {
+    outline: none !important;
+    box-shadow: none !important;
+  }
+
 
   ::-webkit-scrollbar {
     width: 0.5rem;

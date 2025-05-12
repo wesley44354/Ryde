@@ -101,9 +101,9 @@ export const ThemedInput = forwardRef<TextInput, InputProps>(
               keyboardType={keyboardType}
               onSubmitEditing={onSubmitEditing}
               onChangeText={handleOnChangeText}
-              secureTextEntry={secureTextEntry && !showPassword}
               onFocus={() => setIsFocused(true)}
               onBlur={() => setIsFocused(false)}
+              secureTextEntry={secureTextEntry && !showPassword}
               cursorColor={colors.primary[colorScheme!].DEFAULT}
               placeholder={placeholder ? t(placeholder) : undefined}
               placeholderTextColor={colors.general[colorScheme!][400]}
@@ -112,7 +112,7 @@ export const ThemedInput = forwardRef<TextInput, InputProps>(
             />
             {secureTextEntry && (
               <Pressable
-                className="pr-4 pl-2"
+                className="h-[50%] pr-6 pl-1 aspect-square flex items-center"
                 onPress={() => setShowPassword((prev) => !prev)}
               >
                 <Ionicons
