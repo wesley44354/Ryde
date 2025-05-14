@@ -7,10 +7,11 @@ import Animated from "react-native-reanimated";
 import ReactNativeModal from "react-native-modal";
 
 interface Props {
+  onClose?: () => void;
   children: React.ReactNode;
 }
 
-const ThemedModal = ({ children }: Props) => {
+const ThemedModal = ({ children, onClose }: Props) => {
   const SCREEN_WIDTH = Dimensions.get("window").width;
   const SCREEN_HEIGTH =
     Dimensions.get("window").height + Constants.statusBarHeight;
@@ -35,6 +36,7 @@ const ThemedModal = ({ children }: Props) => {
         >
           <Pressable
             onPress={() => {
+              if (onClose) onClose();
               if (router.canGoBack()) {
                 router.back();
               }

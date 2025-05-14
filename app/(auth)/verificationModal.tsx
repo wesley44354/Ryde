@@ -7,8 +7,10 @@ import { useSignUp } from "@clerk/clerk-expo";
 import { icons, images } from "@/constants";
 import { Image, View } from "react-native";
 import { router } from "expo-router";
+import { useState } from "react";
 
 const VerificationModal = () => {
+  const [loading, setLoading] = useState(false);
   const { isLoaded, signUp, setActive } = useSignUp();
   const { verification, setVerification } = useVerificationStore();
 
@@ -17,6 +19,7 @@ const VerificationModal = () => {
       return;
     }
 
+    setLoading(true);
     try {
       const completeSignUp = await signUp.attemptEmailAddressVerification({
         code: verification.code!,
@@ -39,11 +42,19 @@ const VerificationModal = () => {
         error: e.errors[0].longMessage || e.errors[0].message,
         state: "failed",
       });
+    } finally {
+      setLoading(false);
     }
   };
 
   return (
-    <ThemedModal>
+    <ThemedModal
+      onClose={() => {
+        if (verification.state === "success") {
+          router.replace("/(root)/(tabs)/home");
+        }
+      }}
+    >
       {(verification.state === "pending" ||
         verification.state === "failed") && (
         <>
@@ -77,6 +88,7 @@ const VerificationModal = () => {
           />
 
           <ThemedButton
+            loading={loading}
             text="VERIFY_EMAIL"
             bgVariant="success"
             onPress={OnPressVerify}

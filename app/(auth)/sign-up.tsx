@@ -8,15 +8,15 @@ import { ThemedText } from "@/components/ThemedText";
 import Toast from "react-native-toast-message";
 import { useSignUp } from "@clerk/clerk-expo";
 import OAuth from "@/components/auth/OAuth";
-import { useLoader } from "@/context/Load";
 import { useForm } from "react-hook-form";
 import { router } from "expo-router";
 import { icons } from "@/constants";
+import { useState } from "react";
 import { z } from "zod";
 
 const SignUp = () => {
-  const { showLoader, hideLoader } = useLoader();
   const { isLoaded, signUp } = useSignUp();
+  const [loading, setLoading] = useState(false);
   const { verification, setVerification } = useVerificationStore();
 
   const signUpSchema = z.object({
@@ -40,7 +40,8 @@ const SignUp = () => {
     if (!isLoaded) {
       return;
     }
-    showLoader();
+    setLoading(true);
+
     try {
       const [firstName, ...lastName] = forms.nameComplet.split(" ");
       const fullLastName = lastName.join(" ");
@@ -64,7 +65,7 @@ const SignUp = () => {
         text2: e.errors[0].longMessage || e.errors[0].message,
       });
     } finally {
-      hideLoader();
+      setLoading(false);
     }
   };
 
@@ -102,7 +103,11 @@ const SignUp = () => {
         onSubmitEditing={handleSubmit(onSignUpPress)}
       />
 
-      <ThemedButton text="SIGN_UP" onPress={handleSubmit(onSignUpPress)} />
+      <ThemedButton
+        text="SIGN_UP"
+        loading={loading}
+        onPress={handleSubmit(onSignUpPress)}
+      />
 
       <OAuth />
 

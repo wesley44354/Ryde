@@ -1,5 +1,6 @@
 import React from "react";
 import * as Haptics from "expo-haptics";
+import ThemedLoading from "./ThemedLoading";
 import { II18nextTypes } from "@/types/i18next";
 import { ThemedText, ThemedTextProps } from "./ThemedText";
 import {
@@ -17,6 +18,7 @@ interface Props extends TouchableOpacityProps {
   text: keyof II18nextTypes;
   textVariant?: ThemedTextProps["type"];
   bgVariant?: "primary" | "secondary" | "danger" | "outline" | "success";
+  loading?: boolean;
 }
 
 const getBgVariantStyle = (variant: Props["bgVariant"]) => {
@@ -37,9 +39,7 @@ const getBgVariantStyle = (variant: Props["bgVariant"]) => {
 const getTextVariantStyle = (variant: Props["bgVariant"]) => {
   switch (variant) {
     case "primary":
-      return "text-white";
     case "danger":
-      return "text-white";
     case "success":
       return "text-white";
     default:
@@ -56,6 +56,7 @@ export const ThemedButton = ({
   className,
   bgVariant = "primary",
   textVariant = "subtitle",
+  loading = false,
   ...rest
 }: Props) => {
   const handlePressIn = (ev: GestureResponderEvent) => {
@@ -67,17 +68,17 @@ export const ThemedButton = ({
   return (
     <TouchableOpacity
       onPress={onPress}
-      disabled={disabled}
+      disabled={disabled || loading}
       onPressIn={handlePressIn}
       className={`
         rounded-full h-12 px-4 w-full gap-5 flex flex-row items-center justify-center
-        ${disabled ? "opacity-60" : "opacity-100"}
+        ${disabled || loading ? "opacity-40" : "opacity-100"}
         ${getBgVariantStyle(bgVariant)} 
         ${className}
       `}
       {...rest}
     >
-      {iconLeft && (
+      {iconLeft && !loading && (
         <View className="h-[50%] aspect-square ml-5 flex items-center">
           <Image
             source={iconLeft}
@@ -86,13 +87,17 @@ export const ThemedButton = ({
           />
         </View>
       )}
-      <ThemedText
-        text={text}
-        numberOfLines={1}
-        type={textVariant}
-        className={`text-center ${getTextVariantStyle(bgVariant)}`}
-      />
-      {iconRight && (
+      {loading ? (
+        <ThemedLoading />
+      ) : (
+        <ThemedText
+          text={text}
+          numberOfLines={1}
+          type={textVariant}
+          className={`text-center ${getTextVariantStyle(bgVariant)}`}
+        />
+      )}
+      {iconRight && !loading && (
         <View className="h-[50%] aspect-square flex items-center">
           <Image
             source={iconRight}

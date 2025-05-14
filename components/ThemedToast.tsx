@@ -65,7 +65,9 @@ export function ThemedToast({ type, text1, text2 }: Props) {
             : "transparent",
       }}
     >
-      <Ionicons size={30} name={icon} color={borderColor} />
+      <View className="flex-2">
+        <Ionicons size={30} name={icon} color={borderColor} />
+      </View>
       <View className="flex-1">
         <ThemedText type="subtitle">{text1}</ThemedText>
         <ThemedText type="small" color="secondary">
