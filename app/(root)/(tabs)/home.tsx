@@ -1,18 +1,14 @@
-import { Link } from "expo-router";
-import { Text, View } from "react-native";
-import { SignOutButton } from "@clerk/clerk-react";
-import { SignedIn, SignedOut, useUser } from "@clerk/clerk-expo";
+import { SafeAreaView } from "react-native";
+import { useUser } from "@clerk/clerk-expo";
 import { ThemedText } from "@/components/ThemedText";
 
 const Home = () => {
   const { user } = useUser();
 
-  console.log(user?.fullName);
-
   return (
-    <View>
+    <SafeAreaView>
       <ThemedText>{user?.fullName}</ThemedText>
-    </View>
+    </SafeAreaView>
   );
 };
 

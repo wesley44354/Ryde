@@ -1,9 +1,10 @@
-import { Text, SafeAreaView } from "react-native";
+import { ThemedText } from "@/components/ThemedText";
+import { SafeAreaView } from "react-native";
 
 const Rides = () => {
   return (
     <SafeAreaView>
-      <Text>Rides</Text>
+      <ThemedText>Rides</ThemedText>
     </SafeAreaView>
   );
 };

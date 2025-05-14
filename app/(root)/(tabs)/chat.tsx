@@ -1,9 +1,10 @@
-import { Text, SafeAreaView } from "react-native";
+import { ThemedText } from "@/components/ThemedText";
+import { SafeAreaView } from "react-native";
 
 const Chat = () => {
   return (
     <SafeAreaView>
-      <Text>Chat</Text>
+      <ThemedText>Chat</ThemedText>
     </SafeAreaView>
   );
 };

@@ -4,12 +4,20 @@ import AuthContrainer from "@/components/auth/Contrainer";
 import { ThemedButton } from "@/components/ThemedButton";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { ThemedText } from "@/components/ThemedText";
+import Toast from "react-native-toast-message";
+import { useCallback, useState } from "react";
+import { useSignIn } from "@clerk/clerk-expo";
 import OAuth from "@/components/auth/OAuth";
 import { useForm } from "react-hook-form";
+import { useRouter } from "expo-router";
 import { icons } from "@/constants";
 import { z } from "zod";
 
 const SignIn = () => {
+  const { isLoaded, signIn, setActive } = useSignIn();
+  const [loading, setLoading] = useState(false);
+  const router = useRouter();
+
   const signInSchema = z.object({
     email: z.string().email(),
     password: z.string().min(6),
@@ -22,9 +30,41 @@ const SignIn = () => {
     resolver: zodResolver(signInSchema),
   });
 
-  const onSignInPress = async (forms: z.infer<typeof signInSchema>) => {
-    console.log(forms);
-  };
+  const onSignInPress = useCallback(
+    async (forms: z.infer<typeof signInSchema>) => {
+      if (!isLoaded) {
+        return;
+      }
+      setLoading(true);
+
+      try {
+        const signInAttempt = await signIn.create({
+          identifier: forms.email,
+          password: forms.password,
+        });
+
+        if (signInAttempt.status === "complete") {
+          await setActive({ session: signInAttempt.createdSessionId });
+          router.replace("/");
+        } else {
+          Toast.show({
+            type: "error",
+            text1: "ERROR",
+            text2: JSON.stringify(signInAttempt, null, 2),
+          });
+        }
+      } catch (e: any) {
+        Toast.show({
+          type: "error",
+          text1: "ERROR",
+          text2: e.errors[0].longMessage || e.errors[0].message,
+        });
+      } finally {
+        setLoading(false);
+      }
+    },
+    [isLoaded]
+  );
 
   return (
     <AuthContrainer scrollPaddingTop={200} heightAuthImage="30%">
@@ -53,7 +93,11 @@ const SignIn = () => {
         onSubmitEditing={handleSubmit(onSignInPress)}
       />
 
-      <ThemedButton text="SIGN_UP" onPress={handleSubmit(onSignInPress)} />
+      <ThemedButton
+        text="LOG_IN"
+        loading={loading}
+        onPress={handleSubmit(onSignInPress)}
+      />
 
       <OAuth />
 

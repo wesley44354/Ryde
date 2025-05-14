@@ -14,11 +14,11 @@ import {
 interface Props extends TouchableOpacityProps {
   iconLeft?: any;
   iconRight?: any;
+  loading?: boolean;
   className?: string;
   text: keyof II18nextTypes;
   textVariant?: ThemedTextProps["type"];
   bgVariant?: "primary" | "secondary" | "danger" | "outline" | "success";
-  loading?: boolean;
 }
 
 const getBgVariantStyle = (variant: Props["bgVariant"]) => {

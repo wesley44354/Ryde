@@ -1,9 +1,10 @@
-import { Text, SafeAreaView } from "react-native";
+import { ThemedText } from "@/components/ThemedText";
+import { SafeAreaView } from "react-native";
 
 const Profile = () => {
   return (
     <SafeAreaView>
-      <Text>Profile</Text>
+      <ThemedText>Profile</ThemedText>
     </SafeAreaView>
   );
 };
