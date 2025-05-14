@@ -38,7 +38,7 @@ Este é um clone do aplicativo de transporte **Ryde**, inspirado no design do [F
 - [x] Estilização com NativeWind
 - [x] Suporte completo para Web
 - [x] Configuração de i18n
-- [ ] Sistema de autenticação (em andamento)
+- [x] Sistema de autenticação
 - [ ] Integração com APIs externas
 - [ ] Tela de mapa com localização em tempo real
 
