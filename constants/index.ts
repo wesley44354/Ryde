@@ -9,7 +9,7 @@ import email from "@/assets/icons/email.png";
 import eyecross from "@/assets/icons/eyecross.png";
 import google from "@/assets/icons/google.png";
 import home from "@/assets/icons/home.png";
-import list from "@/assets/icons/list.png";
+import rides from "@/assets/icons/rides.png";
 import lock from "@/assets/icons/lock.png";
 import map from "@/assets/icons/map.png";
 import marker from "@/assets/icons/marker.png";
@@ -55,7 +55,7 @@ export const icons = {
   eyecross,
   google,
   home,
-  list,
+  rides,
   lock,
   map,
   marker,
