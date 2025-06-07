@@ -1,59 +1,15 @@
 {
-  "name": "ryde",
-  "version": "1.0.0",
-  "main": "expo-router/entry",
-  "scripts": {
-    "start": "tsx scripts/genarateApiTypes.ts && expo start",
-    "ios": "expo start --ios",
-    "web": "expo start --web",
-    "android": "expo start --android",
-    "env": "eas env:pull --environment development",
-    "export": "yarn expo export -p web && copy vercel.json dist\\vercel.json"
-  },
-  "dependencies": {
-    "@clerk/clerk-expo": "^2.10.7",
-    "@expo/metro-runtime": "~5.0.4",
-    "@expo/vector-icons": "^14.0.2",
-    "@hookform/resolvers": "^5.0.1",
-    "@neondatabase/serverless": "^1.0.1",
-    "@react-navigation/native": "^7.0.14",
-    "expo": "53.0.9",
-    "expo-auth-session": "^6.1.5",
-    "expo-blur": "^14.1.4",
-    "expo-font": "~13.3.1",
-    "expo-haptics": "~14.1.4",
-    "expo-linking": "~7.1.4",
-    "expo-router": "~5.0.6",
-    "expo-secure-store": "^14.2.3",
-    "expo-splash-screen": "~0.30.8",
-    "expo-status-bar": "~2.2.3",
-    "expo-system-ui": "~5.0.7",
-    "expo-updates": "~0.28.12",
-    "expo-web-browser": "~14.1.6",
-    "i18next": "^25.0.2",
-    "nativewind": "^4.1.23",
-    "react": "19.0.0",
-    "react-dom": "19.0.0",
-    "react-hook-form": "^7.56.1",
-    "react-i18next": "^15.5.1",
-    "react-native": "0.79.2",
-    "react-native-modal": "^14.0.0-rc.1",
-    "react-native-reanimated": "~3.17.4",
-    "react-native-safe-area-context": "5.4.0",
-    "react-native-screens": "~4.10.0",
-    "react-native-swiper": "^1.6.0",
-    "react-native-toast-message": "^2.3.0",
-    "react-native-web": "^0.20.0",
-    "zod": "^3.24.3",
-    "zustand": "^5.0.4"
-  },
-  "devDependencies": {
-    "@babel/core": "^7.25.2",
-    "@types/react": "~19.0.10",
-    "tailwindcss": "^3.4.17",
-    "ts-node": "^10.9.2",
-    "tsx": "^4.19.4",
-    "typescript": "~5.8.3"
-  },
-  "private": true
+    "name": "ryde",
+    "private": true,
+    "version": "1.0.0",
+    "scripts": {
+        "app": "yarn workspace mobile start"
+    },
+    "workspaces": [
+        "mobile",
+        "server",
+        "common"
+    ],
+    "dependencies": {},
+    "resolutions": {}
 }

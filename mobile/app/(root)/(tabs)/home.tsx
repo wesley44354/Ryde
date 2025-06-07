@@ -1,7 +1,7 @@
 import { SafeAreaView } from "react-native";
 import { useUser } from "@clerk/clerk-expo";
-import { ThemedText } from "@/components/ThemedText";
-import { ThemedButton } from "@/components/ThemedButton";
+import { ThemedText } from "@/mobile-app/components/ThemedText";
+import { ThemedButton } from "@/mobile-app/components/ThemedButton";
 import { fetchAPI } from "@/lib/fetch";
 
 const Home = () => {

@@ -1,8 +1,8 @@
 import { useVerificationStore } from "@/stores/auth/VerificationStore";
-import { ThemedInput } from "@/components/ThemedInput/ThemedInput";
-import { ThemedButton } from "@/components/ThemedButton";
-import { ThemedText } from "@/components/ThemedText";
-import ThemedModal from "@/components/ThemedModal";
+import { ThemedInput } from "@/mobile-app/components/ThemedInput/ThemedInput";
+import { ThemedButton } from "@/mobile-app/components/ThemedButton";
+import { ThemedText } from "@/mobile-app/components/ThemedText";
+import ThemedModal from "@/mobile-app/components/ThemedModal";
 import { useSignUp } from "@clerk/clerk-expo";
 import { icons, images } from "@/constants";
 import { Image, View } from "react-native";

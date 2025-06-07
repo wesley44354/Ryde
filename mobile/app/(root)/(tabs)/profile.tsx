@@ -1,4 +1,4 @@
-import { ThemedText } from "@/components/ThemedText";
+import { ThemedText } from "@/mobile-app/components/ThemedText";
 import { SafeAreaView } from "react-native";
 
 const Profile = () => {

@@ -1,14 +1,14 @@
-import i18n from "@/lang/i18n";
+import i18n from "@/mobile-app/lang/i18n";
 import { router } from "expo-router";
 import Swiper from "react-native-swiper";
 import { useRef, useState } from "react";
 const AppConfig = require("@/constants/appConfig");
 import { Image, SafeAreaView } from "react-native";
-import { ThemedText } from "@/components/ThemedText";
-import ThemedSwiper from "@/components/ThemedSwiper";
+import { ThemedText } from "@/mobile-app/components/ThemedText";
+import ThemedSwiper from "@/mobile-app/components/ThemedSwiper";
 import { TouchableOpacity, View } from "react-native";
 import { onboardingList } from "@/constants/onboarding";
-import { ThemedButton } from "@/components/ThemedButton";
+import { ThemedButton } from "@/mobile-app/components/ThemedButton";
 
 const onboarding = () => {
   const swiperRef = useRef<Swiper>(null);

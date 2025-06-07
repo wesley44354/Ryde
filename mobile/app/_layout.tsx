@@ -10,10 +10,10 @@ export { ErrorBoundary } from "expo-router";
 import { StatusBar } from "expo-status-bar";
 import { useColorScheme } from "react-native";
 import Toast from "react-native-toast-message";
-import { LoaderProvider } from "@/context/Load";
-import { setZodErrorMessages } from "@/lang/zod";
+import { LoaderProvider } from "@/mobile-app/context/Load";
+import { setZodErrorMessages } from "@/mobile-app/lang/zod";
 import * as SplashScreen from "expo-splash-screen";
-import { ThemedToast } from "@/components/ThemedToast";
+import { ThemedToast } from "@/mobile-app/components/ThemedToast";
 import { tokenCache } from "@clerk/clerk-expo/token-cache";
 import { ClerkLoaded, ClerkProvider } from "@clerk/clerk-expo";
 import {

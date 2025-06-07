@@ -1,4 +1,4 @@
-import ThemedTabBar from "@/components/ThemedTabBar/Tab";
+import ThemedTabBar from "@/mobile-app/components/ThemedTabBar/Tab";
 import { Tabs } from "expo-router";
 
 const Layout = () => {
