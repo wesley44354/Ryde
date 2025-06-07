@@ -1,5 +1,9 @@
+import {
+  signUpSchema,
+  SignUpSchemaType,
+  useVerificationStore,
+} from "@/stores/auth/VerificationStore";
 import { ThemedInputController } from "@/components/ThemedInput/ThemedInputController";
-import { useVerificationStore } from "@/stores/auth/VerificationStore";
 import AuthRedirectLink from "@/components/auth/RedirectLink";
 import AuthContrainer from "@/components/auth/Contrainer";
 import { ThemedButton } from "@/components/ThemedButton";
@@ -18,14 +22,6 @@ const SignUp = () => {
   const { isLoaded, signUp } = useSignUp();
   const [loading, setLoading] = useState(false);
   const { verification, setVerification } = useVerificationStore();
-
-  const signUpSchema = z.object({
-    nameComplet: z.string().min(3).regex(/\s/, "VALIDATION_FULL_NAME_REQUIRED"),
-    password: z.string().min(8),
-    email: z.string().email(),
-  });
-
-  type SignUpSchemaType = z.infer<typeof signUpSchema>;
 
   const { control, handleSubmit, setFocus } = useForm<SignUpSchemaType>({
     defaultValues: {
@@ -54,8 +50,8 @@ const SignUp = () => {
       await signUp.prepareEmailAddressVerification({ strategy: "email_code" });
       setVerification({
         ...verification,
-        email: forms.email,
         state: "pending",
+        forms: forms,
       });
       router.push("/(auth)/verificationModal");
     } catch (e: any) {

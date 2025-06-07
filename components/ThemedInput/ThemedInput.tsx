@@ -112,7 +112,7 @@ export const ThemedInput = forwardRef<TextInput, InputProps>(
             />
             {secureTextEntry && (
               <Pressable
-                className="h-[50%] pr-6 pl-1 aspect-square flex items-center"
+                className="h-[50%] mr-5  aspect-square flex items-center"
                 onPress={() => setShowPassword((prev) => !prev)}
               >
                 <Ionicons

@@ -6,6 +6,7 @@ import ThemedModal from "@/components/ThemedModal";
 import { useSignUp } from "@clerk/clerk-expo";
 import { icons, images } from "@/constants";
 import { Image, View } from "react-native";
+import { fetchAPI } from "@/lib/fetch";
 import { router } from "expo-router";
 import { useState } from "react";
 
@@ -26,7 +27,11 @@ const VerificationModal = () => {
       });
 
       if (completeSignUp.status === "complete") {
-        //TODO where
+        fetchAPI("/(api)/user", {
+          method: "POST",
+          body: JSON.stringify({ ...verification.forms }),
+        });
+
         await setActive({ session: completeSignUp.createdSessionId });
         setVerification({ ...verification, state: "success" });
       } else {
@@ -68,7 +73,7 @@ const VerificationModal = () => {
             <ThemedText
               type="default"
               className="self-start"
-              i18nTextArgs={{ email: verification.email }}
+              i18nTextArgs={{ email: verification.forms?.email }}
               text="WEVE_SENT_A_VERIFICATION_CODE_TO"
             />
           </View>
