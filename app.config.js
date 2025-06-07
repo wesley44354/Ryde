@@ -25,7 +25,7 @@ export default {
     output: "static",
     favicon: "./assets/images/favicon.png",
   },
-  plugins: ["expo-font", ["expo-router", { "origin": "https://uber.com/" }], "expo-web-browser"],
+  plugins: ["expo-font", ["expo-router", { "origin": `https://ryde.com/` }], "expo-web-browser"],
   experiments: {
     typedRoutes: true,
   },

@@ -7,6 +7,7 @@ const AppConfig = {
   identifier: "com.ryde.ryde_app",
   extra: {
     clerkPublishableKey: process.env.CLERK_PUBLISHABLE_KEY,
+    databaseUrl: process.env.DATABASE_URL,
     eas: {
       projectId: "76c83c83-5fa9-44e4-8440-736815537755",
     },

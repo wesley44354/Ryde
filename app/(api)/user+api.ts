@@ -1,10 +1,9 @@
 import { neon } from "@neondatabase/serverless";
+import Constants from "expo-constants";
 
 export async function POST(request: Request) {
   try {
-    const sql = neon(
-      `${"postgresql://rydedb_owner:npg_pVS7dcbzuN5E@ep-dark-leaf-ac46pgop-pooler.sa-east-1.aws.neon.tech/rydedb?sslmode=require"}`
-    );
+    const sql = neon(Constants.expoConfig?.extra?.databaseUrl);
     const { name, email, clerkId } = await request.json();
 
     if (!name || !email || !clerkId) {

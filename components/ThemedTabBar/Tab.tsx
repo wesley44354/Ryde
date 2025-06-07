@@ -21,7 +21,7 @@ const ThemedTabBar = ({ state, descriptors, navigation }: any) => {
   const buttonWidth = contrainerWidth / state.routes.length;
 
   const tabBgColor = GetColorByTheme({
-    theme: colorScheme === "dark" ? "light" : "dark",
+    theme: colorScheme!,
     color: "background",
     intensity: "DEFAULT",
   });
@@ -69,6 +69,7 @@ const ThemedTabBar = ({ state, descriptors, navigation }: any) => {
         bottom: 25,
         borderRadius: 50,
         overflow: "hidden",
+        paddingVertical: 5,
         alignItems: "center",
         alignSelf: "center",
         flexDirection: "row",

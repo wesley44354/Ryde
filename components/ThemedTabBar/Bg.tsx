@@ -22,7 +22,7 @@ const ThemedTabBg = ({
     intensity: "DEFAULT",
   });
 
-  const size = dimensions.height / 14;
+  const size = dimensions.height / 16;
 
   const animatedStyle = useAnimatedStyle(() => {
     const offset = (buttonWidth - size) / 2;
