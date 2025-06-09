@@ -1,6 +1,4 @@
-import { II18nextTypes } from "@/types/i18next";
-
-export const pt: II18nextTypes = {
+export const pt = {
   // auth
   OR: "Ou",
   SKIP: "Pular",
@@ -49,4 +47,14 @@ export const pt: II18nextTypes = {
     "Insira seu destino, relaxe e deixe que nós cuidamos do resto.",
   DISCOVER_THE_CONVENIENCE_OF_FINDING_YOUR_PERFECT_RIDE_WITH_APP_NAME:
     "Descubra a conveniência de encontrar o seu passeio perfeito com a {{APP_NAME}}",
+
+  // ride list
+  DATE_TIME: "Data & Tempo",
+  CAR_SEATS: "Assentos de carro",
+
+  // common
+  PAID: "Pago",
+  DRIVER: "Motorista",
+  NOT_PAID: "Não Pago",
+  PAYMENT_STATUS: "Status de pagamento",
 };

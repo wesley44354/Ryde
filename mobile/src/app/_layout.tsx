@@ -1,5 +1,5 @@
 import "../lang/i18n";
-import "../../global.css";
+import "../global.css";
 import "react-native-reanimated";
 import { useEffect } from "react";
 import { Stack } from "expo-router";

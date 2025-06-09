@@ -22,6 +22,13 @@ const RootContrainer = ({ children }: Props) => {
           />
 
           {children}
+
+          <View
+            style={{
+              width: "100%",
+              height: 80,
+            }}
+          />
         </View>
       </ScrollView>
     </KeyboardAvoidingView>

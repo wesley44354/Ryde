@@ -12,7 +12,7 @@ const recentRids = [
     destination_longitude: 83.985567,
     ride_time: 391,
     fare_price: 19500.0,
-    payment_status: "paid",
+    payment_status: "wait",
     driver_id: 2,
     user_id: "1",
     user_email: "teste@gmail.com",
@@ -115,6 +115,7 @@ const recentRids = [
 const ThemedRideList = () => {
   return (
     <ThemedFlatList
+      scrollEnabled={false}
       data={recentRids?.slice(0, 5)}
       contentContainerClassName="gap-5"
       renderItem={({ item }) => <ThemedRideCard ride={item} />}

@@ -1,44 +1,30 @@
-import React, { useEffect, useRef } from "react";
-import { Animated, Easing } from "react-native";
+import React from "react";
+import { ActivityIndicator, useColorScheme } from "react-native";
+import { colors, ColorTypes, ColorIntensity } from "@/constants/colors";
 
 interface Props {
   size?: number;
+  color?: ColorTypes;
+  customColor?: string;
+  colorIntensity?: keyof ColorIntensity;
 }
 
-const ThemedLoading = ({ size = 24 }: Props) => {
-  const rotateAnim = useRef(new Animated.Value(0)).current;
+const ThemedLoading = ({
+  size = 24,
+  color = "secondary",
+  colorIntensity = "900",
+  customColor,
+}: Props) => {
+  const theme = useColorScheme();
 
-  useEffect(() => {
-    const spin = Animated.loop(
-      Animated.timing(rotateAnim, {
-        toValue: 1,
-        duration: 800,
-        easing: Easing.linear,
-        useNativeDriver: true,
-      })
-    );
-    spin.start();
-    return () => spin.stop();
-  }, [rotateAnim]);
+  const getColor = (): string => {
+    if (customColor) return customColor;
 
-  const rotate = rotateAnim.interpolate({
-    inputRange: [0, 1],
-    outputRange: ["0deg", "360deg"],
-  });
+    const palette = colors[color];
+    return palette?.[theme ?? "light"]?.[colorIntensity] ?? "#000";
+  };
 
-  return (
-    <Animated.View
-      className="border-general-light dark:border-general-dark shadow-general-light"
-      style={{
-        width: size,
-        height: size,
-        borderRadius: size / 2,
-        borderWidth: size * 0.1,
-        borderTopColor: "transparent",
-        transform: [{ rotate }],
-      }}
-    />
-  );
+  return <ActivityIndicator size={size} color={getColor()} />;
 };
 
 export default ThemedLoading;

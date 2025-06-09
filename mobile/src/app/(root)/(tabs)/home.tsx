@@ -1,10 +1,10 @@
-import HomeTopBar from "@/components/root/home/TopBar";
 import ThemedRideList from "@/components/root/ThemedRideList";
+import TopBar from "@/components/root/TopBar";
 
 const Home = () => {
   return (
     <>
-      <HomeTopBar />
+      <TopBar />
       <ThemedRideList />
     </>
   );

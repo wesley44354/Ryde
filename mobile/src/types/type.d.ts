@@ -33,16 +33,18 @@ declare interface MapProps {
   onMapReady?: () => void;
 }
 
+declare type PaymentStatusTypes = "paid" | "wait";
+
 declare interface Ride {
   origin_address: string;
   destination_address: string;
+  ride_time: number;
+  fare_price: number;
   origin_latitude: number;
   origin_longitude: number;
   destination_latitude: number;
   destination_longitude: number;
-  ride_time: number;
-  fare_price: number;
-  payment_status: string;
+  payment_status: PaymentStatusTypes;
   driver_id: number;
   user_email: string;
   created_at: string;

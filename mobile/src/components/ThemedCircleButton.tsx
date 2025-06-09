@@ -2,15 +2,15 @@ import React from "react";
 import { icons } from "@/constants";
 import * as Haptics from "expo-haptics";
 import ThemedLoading from "./ThemedLoading";
-import { ThemedTextProps } from "./ThemedText";
+import { ThemedImage } from "./ThemedImage";
 import { PlatformPressable } from "@react-navigation/elements";
 import {
   View,
-  Image,
-  GestureResponderEvent,
   StyleProp,
   ViewStyle,
   PressableProps,
+  GestureResponderEvent,
+  Pressable,
 } from "react-native";
 
 type CustomPressableProps = Omit<PressableProps, "style" | "onPress"> & {
@@ -18,15 +18,15 @@ type CustomPressableProps = Omit<PressableProps, "style" | "onPress"> & {
   hoverEffect?: any;
   pressColor?: string;
   pressOpacity?: number;
+  children?: React.ReactNode;
   style?: StyleProp<ViewStyle>;
   onPress?: (e: GestureResponderEvent) => void;
-  children?: React.ReactNode;
 };
 
 interface Props extends CustomPressableProps {
-  onPress?: () => void;
   loading?: boolean;
   className?: string;
+  onPress?: () => void;
   icon: keyof typeof icons;
   bgVariant?: "primary" | "secondary" | "danger" | "outline" | "success";
 }
@@ -46,16 +46,6 @@ const getBgVariantStyle = (variant: Props["bgVariant"]) => {
   }
 };
 
-const getIconColor = (variant: Props["bgVariant"]) => {
-  switch (variant) {
-    case "danger":
-    case "success":
-      return "white";
-    default:
-      return "black";
-  }
-};
-
 export const ThemedCircleButton = ({
   icon,
   onPress,
@@ -66,7 +56,7 @@ export const ThemedCircleButton = ({
   ...rest
 }: Props) => {
   return (
-    <PlatformPressable
+    <Pressable
       onPress={() => {
         if (!disabled && !loading && onPress) {
           onPress();
@@ -87,17 +77,18 @@ export const ThemedCircleButton = ({
       {...rest}
     >
       {loading ? (
-        <ThemedLoading size={20} />
+        <ThemedLoading color="secondary" colorIntensity="900" size={20} />
       ) : (
-        <View className="h-[50%] aspect-square  flex items-center">
-          <Image
+        <View className="h-[50%] aspect-square flex items-center">
+          <ThemedImage
+            color="secondary"
+            colorIntensity="900"
             source={icons[icon]}
             resizeMode="contain"
             className={`flex-1`}
-            tintColor={getIconColor(bgVariant)}
           />
         </View>
       )}
-    </PlatformPressable>
+    </Pressable>
   );
 };

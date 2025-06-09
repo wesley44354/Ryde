@@ -1,11 +1,13 @@
 import React from "react";
 import * as Haptics from "expo-haptics";
 import ThemedLoading from "./ThemedLoading";
+import { colors } from "@/constants/colors";
 import { II18nextTypes } from "@/types/i18next";
 import { ThemedText, ThemedTextProps } from "./ThemedText";
 import {
   View,
   Image,
+  useColorScheme,
   TouchableOpacity,
   GestureResponderEvent,
   TouchableOpacityProps,
@@ -36,17 +38,20 @@ const getBgVariantStyle = (variant: Props["bgVariant"]) => {
   }
 };
 
-const getTextVariantStyle = (variant: Props["bgVariant"]) => {
+const getTextVariantStyle = (variant: Props["bgVariant"]): string => {
+  const theme = useColorScheme() ?? "light";
+
   switch (variant) {
     case "primary":
     case "danger":
     case "success":
-      return "text-white";
+      return "#ffffff";
+    case "outline":
+      return colors["secondary"]?.[theme]?.["900"];
     default:
-      return "text-secondary-light-900 dark:text-secondary-dark-900";
+      return colors["secondary"]?.[theme]?.["900"];
   }
 };
-
 export const ThemedButton = ({
   text,
   onPress,
@@ -88,13 +93,14 @@ export const ThemedButton = ({
         </View>
       )}
       {loading ? (
-        <ThemedLoading />
+        <ThemedLoading customColor={getTextVariantStyle(bgVariant)} />
       ) : (
         <ThemedText
           text={text}
           numberOfLines={1}
           type={textVariant}
-          className={`text-center ${getTextVariantStyle(bgVariant)}`}
+          className={`text-center`}
+          style={{ color: getTextVariantStyle(bgVariant) }}
         />
       )}
       {iconRight && !loading && (

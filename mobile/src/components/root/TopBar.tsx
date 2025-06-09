@@ -5,7 +5,7 @@ import { useAuth, useUser } from "@clerk/clerk-expo";
 import { ThemedText } from "@/components/ThemedText";
 import { ThemedCircleButton } from "@/components/ThemedCircleButton";
 
-const HomeTopBar = () => {
+const TopBar = () => {
   const { user } = useUser();
   const { signOut } = useAuth();
   const [loading, setLoading] = useState(false);
@@ -27,12 +27,12 @@ const HomeTopBar = () => {
       <ThemedCircleButton
         onPress={handleSignOut}
         bgVariant="primary"
-        loading={loading}
         disabled={loading}
+        loading={loading}
         icon="out"
       />
     </View>
   );
 };
 
-export default React.memo(HomeTopBar);
+export default React.memo(TopBar);
