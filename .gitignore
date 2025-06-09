@@ -3,11 +3,13 @@
 # dependencies
 node_modules/
 
+
 # Expo
-.expo/
+./mobile/.expo/
+
 # dist/
-web-build/
-expo-env.d.ts
+./mobile/web-build/
+./mobile/expo-env.d.ts
 
 # Native
 *.orig.*

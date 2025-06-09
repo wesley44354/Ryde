@@ -1,5 +1,5 @@
 import "../lang/i18n";
-import "../global.css";
+import "../../global.css";
 import "react-native-reanimated";
 import { useEffect } from "react";
 import { Stack } from "expo-router";
@@ -10,10 +10,10 @@ export { ErrorBoundary } from "expo-router";
 import { StatusBar } from "expo-status-bar";
 import { useColorScheme } from "react-native";
 import Toast from "react-native-toast-message";
-import { LoaderProvider } from "@/mobile-app/context/Load";
-import { setZodErrorMessages } from "@/mobile-app/lang/zod";
+import { LoaderProvider } from "@/context/Load";
+import { setZodErrorMessages } from "@/lang/zod";
 import * as SplashScreen from "expo-splash-screen";
-import { ThemedToast } from "@/mobile-app/components/ThemedToast";
+import { ThemedToast } from "@/components/ThemedToast";
 import { tokenCache } from "@clerk/clerk-expo/token-cache";
 import { ClerkLoaded, ClerkProvider } from "@clerk/clerk-expo";
 import {

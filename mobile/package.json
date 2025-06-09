@@ -3,11 +3,12 @@
   "version": "1.0.0",
   "main": "expo-router/entry",
   "scripts": {
+    "start": "expo start",
     "ios": "expo start --ios",
     "web": "expo start --web",
     "android": "expo start --android",
     "env": "eas env:pull --environment development",
-    "start": "tsx scripts/genarateApiTypes.ts && expo start",
+    "genarateApiTypes": "tsx scripts/genarateApiTypes.ts && expo start",
     "export": "yarn expo export -p web && copy vercel.json dist\\vercel.json"
   },
   "dependencies": {

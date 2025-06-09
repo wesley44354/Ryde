@@ -4,23 +4,15 @@
     "strict": true,
     "paths": {
       "@/*": [
-        "./*"
+        "./src/*"
       ]
     }
   },
   "include": [
     "**/*.ts",
     "**/*.tsx",
-    "nativewind-env.d.ts",
-    "constants/colors.js",
-    "tailwind.config.ts",
-    "metro.config.js",
-    "metro.config.js",
-    ".expo/types/**/*.ts",
     "expo-env.d.ts",
-    "app.config.js",
-    "app/+html.tsxc",
-    "node_modules/fetch.ts",
-    "scripts/genarateApiTypes.js"
+    "nativewind-env.d.ts",
+    ".expo/types/**/*.ts",
   ]
 }

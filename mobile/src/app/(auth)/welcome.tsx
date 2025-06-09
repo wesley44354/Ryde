@@ -1,9 +1,9 @@
 import { router } from "expo-router";
-import OAuth from "@/mobile-app/components/auth/OAuth";
-import { ThemedText } from "@/mobile-app/components/ThemedText";
-import { ThemedButton } from "@/mobile-app/components/ThemedButton";
-import AuthContrainer from "@/mobile-app/components/auth/Contrainer";
-import AuthRedirectLink from "@/mobile-app/components/auth/RedirectLink";
+import OAuth from "@/components/auth/OAuth";
+import { ThemedText } from "@/components/ThemedText";
+import { ThemedButton } from "@/components/ThemedButton";
+import AuthContrainer from "@/components/auth/Contrainer";
+import AuthRedirectLink from "@/components/auth/RedirectLink";
 
 const Welcome = () => {
   return (
