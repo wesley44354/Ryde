@@ -16,7 +16,7 @@ const onboarding = () => {
   const isLastSlide = activeIndex === onboardingList.length - 1;
 
   return (
-    <SafeAreaView className="flex-1  items-center pb-[2%] justify-between ">
+    <SafeAreaView className="flex-1 items-center pb-[2%] justify-between">
       <TouchableOpacity
         className="w-full flex justify-end items-end h-[10%] p-5 pt-10"
         onPress={() => {

@@ -1,11 +1,13 @@
+import RootContrainer from "@/components/root/Contrainer";
 import ThemedTabBar from "@/components/ThemedTabBar/Tab";
 import { Tabs } from "expo-router";
 
 const Layout = () => {
   return (
     <Tabs
-      tabBar={(props) => <ThemedTabBar {...props} />}
       initialRouteName="home"
+      screenLayout={RootContrainer}
+      tabBar={(props) => <ThemedTabBar {...props} />}
     >
       <Tabs.Screen
         name="home"
