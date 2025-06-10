@@ -6,7 +6,12 @@
         "**/.DS_Store": true,
         "**/Thumbs.db": true,
         "**/CVS": true,
-        ".vscode": true
+        ".vscode": true,
+        "mobile/expo-env.d.ts": true,
+        "mobile/nativewind-env.d.ts": true
     },
-    "hide-files.files": []
+    "hide-files.files": [
+        "mobile/expo-env.d.ts",
+        "mobile/nativewind-env.d.ts"
+    ]
 }

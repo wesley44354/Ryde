@@ -1,4 +1,4 @@
-const AppConfig = {
+export const AppConfig = {
   name: "Ryde",
   slug: "rydeapp",
   owner: "ryde_app",
@@ -13,5 +13,3 @@ const AppConfig = {
     },
   },
 };
-
-module.exports = AppConfig;

@@ -1,0 +1,15 @@
+export const JakartaSansBold = require("./JakartaSans-Bold.ttf");
+export const JakartaSansBoldItalic = require("./JakartaSans-BoldItalic.ttf");
+export const JakartaSansExtraBold = require("./JakartaSans-ExtraBold.ttf");
+export const JakartaSansExtraBoldItalic = require("./JakartaSans-ExtraBoldItalic.ttf");
+export const JakartaSansExtraLight = require("./JakartaSans-ExtraLight.ttf");
+export const JakartaSansExtraLightItalic = require("./JakartaSans-ExtraLightItalic.ttf");
+export const JakartaSansItalic = require("./JakartaSans-Italic.ttf");
+export const JakartaSansLight = require("./JakartaSans-Light.ttf");
+export const JakartaSansLightItalic = require("./JakartaSans-LightItalic.ttf");
+export const JakartaSansMedium = require("./JakartaSans-Medium.ttf");
+export const JakartaSansMediumItalic = require("./JakartaSans-MediumItalic.ttf");
+export const JakartaSansRegular = require("./JakartaSans-Regular.ttf");
+export const JakartaSansSemiBold = require("./JakartaSans-SemiBold.ttf");
+export const JakartaSansSemiBoldItalic = require("./JakartaSans-SemiBoldItalic.ttf");
+export const SpaceMonoRegular = require("./SpaceMono-Regular.ttf");

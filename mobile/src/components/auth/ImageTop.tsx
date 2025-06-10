@@ -1,4 +1,4 @@
-import { images } from "@/constants";
+import { images } from "ui";
 import { DimensionValue, Image, useWindowDimensions, View } from "react-native";
 
 interface Props {

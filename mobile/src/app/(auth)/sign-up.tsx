@@ -14,8 +14,8 @@ import { useSignUp } from "@clerk/clerk-expo";
 import OAuth from "@/components/auth/OAuth";
 import { useForm } from "react-hook-form";
 import { router } from "expo-router";
-import { icons } from "@/constants";
 import { useState } from "react";
+import { icons } from "ui";
 import { z } from "zod";
 
 const SignUp = () => {

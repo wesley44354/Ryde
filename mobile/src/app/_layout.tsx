@@ -1,17 +1,16 @@
 import "../lang/i18n";
 import "../global.css";
 import "react-native-reanimated";
+import { colors } from "common";
 import { useEffect } from "react";
 import { Stack } from "expo-router";
 import { useFonts } from "expo-font";
 import Constants from "expo-constants";
-import { colors } from "@/constants/colors";
 export { ErrorBoundary } from "expo-router";
 import { StatusBar } from "expo-status-bar";
 import { useColorScheme } from "react-native";
 import Toast from "react-native-toast-message";
 import { LoaderProvider } from "@/context/Load";
-import { setZodErrorMessages } from "@/lang/zod";
 import * as SplashScreen from "expo-splash-screen";
 import { ThemedToast } from "@/components/ThemedToast";
 import { tokenCache } from "@clerk/clerk-expo/token-cache";
@@ -21,6 +20,17 @@ import {
   DarkTheme as NavigationDarkTheme,
   DefaultTheme as NavigationDefaultTheme,
 } from "@react-navigation/native";
+import {
+  Ionicons,
+  JakartaSansBold,
+  JakartaSansExtraBold,
+  JakartaSansExtraLight,
+  JakartaSansLight,
+  JakartaSansMedium,
+  JakartaSansRegular,
+  JakartaSansSemiBold,
+  setZodErrorMessages,
+} from "ui";
 
 const clerkKey = Constants.expoConfig?.extra?.clerkPublishableKey;
 
@@ -38,14 +48,14 @@ SplashScreen.preventAutoHideAsync();
 
 export default function RootLayout() {
   const [loaded] = useFonts({
-    Ionicons: require("../assets/fonts/vector-icons/Ionicons.ttf"),
-    "Jakarta-Bold": require("../assets/fonts/PlusJakartaSans-Bold.ttf"),
-    "Jakarta-Light": require("../assets/fonts/PlusJakartaSans-Light.ttf"),
-    "Jakarta-Medium": require("../assets/fonts/PlusJakartaSans-Medium.ttf"),
-    "Jakarta-Regular": require("../assets/fonts/PlusJakartaSans-Regular.ttf"),
-    "Jakarta-SemiBold": require("../assets/fonts/PlusJakartaSans-SemiBold.ttf"),
-    "Jakarta-ExtraBold": require("../assets/fonts/PlusJakartaSans-ExtraBold.ttf"),
-    "Jakarta-ExtraLight": require("../assets/fonts/PlusJakartaSans-ExtraLight.ttf"),
+    Ionicons,
+    "Jakarta-Bold": JakartaSansBold,
+    "Jakarta-Light": JakartaSansLight,
+    "Jakarta-Medium": JakartaSansMedium,
+    "Jakarta-Regular": JakartaSansRegular,
+    "Jakarta-SemiBold": JakartaSansSemiBold,
+    "Jakarta-ExtraBold": JakartaSansExtraBold,
+    "Jakarta-ExtraLight": JakartaSansExtraLight,
   });
 
   useEffect(() => {

@@ -1,13 +1,12 @@
-import i18n from "@/lang/i18n";
+import { AppConfig } from "common";
 import { router } from "expo-router";
 import Swiper from "react-native-swiper";
 import { useRef, useState } from "react";
-const AppConfig = require("@/constants/appConfig");
+import { i18n, onboardingList } from "ui";
 import { Image, SafeAreaView } from "react-native";
 import { ThemedText } from "@/components/ThemedText";
 import ThemedSwiper from "@/components/ThemedSwiper";
 import { TouchableOpacity, View } from "react-native";
-import { onboardingList } from "@/constants/onboarding";
 import { ThemedButton } from "@/components/ThemedButton";
 
 const onboarding = () => {

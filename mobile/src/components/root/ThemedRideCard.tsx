@@ -1,11 +1,8 @@
-import { Ride } from "@/types/type";
-import { icons } from "@/constants";
+import { ColorTypes, Ride } from "common";
 import { ThemedText } from "../ThemedText";
 import { Image, View } from "react-native";
 import { ThemedView } from "../ThemedView";
-import { ColorTypes } from "@/constants/colors";
-import { II18nextTypes } from "@/types/i18next";
-import i18n from "@/lang/i18n";
+import { i18n, icons, II18nextTypes } from "ui";
 
 const LocationRow = ({
   icon,
@@ -67,6 +64,8 @@ const InfoRow = ({
 
 const ThemedRideCard = ({
   ride: {
+    destination_longitude,
+    destination_latitude,
     destination_address,
     origin_address,
     payment_status,
@@ -79,7 +78,14 @@ const ThemedRideCard = ({
   return (
     <View className="bg-white dark:bg-black rounded-lg p-5 gap-5">
       <View className="flex-row h-24 gap-5 p-2 pt-0 pb-0">
-        <View className="h-full aspect-[1/1.1] bg-red-50 rounded-lg" />
+        <View className="h-full aspect-[1/1.1] rounded-lg">
+          <Image
+            source={{
+              uri: `https://maps.geoapify.com/v1/staticmap?style=osm-bright&width=600&height=400&center=lonlat:${destination_longitude},${destination_latitude}&zoom=14&apiKey=${process.env.EXPO_PUBLIC_GEOAPIFY_API_KEY}`,
+            }}
+            className="flex-1 rounded-lg"
+          />
+        </View>
         <View className="flex-1 h-full p-2 pr-0 pl-0">
           <LocationRow icon={"to"} text={destination_address} />
           <LocationRow icon={"point"} text={origin_address} />

@@ -1,6 +1,5 @@
 import React from "react";
-import { Theme } from "@/constants/Theme";
-import { Colors } from "@/constants/Colors";
+import { colors } from "ui";
 import { View, Switch, StyleSheet, useColorScheme } from "react-native";
 import { ThemedInputContainer } from "./ThemedInputContainer";
 import {
@@ -35,7 +34,7 @@ export const ThemedSwitch = <T extends IconLibrary>({
   onValueChange,
 }: Props<T>) => {
   const colorScheme = useColorScheme() ?? "light";
-  const theme = Colors[colorScheme];
+  const theme = colors[colorScheme];
 
   const renderIcon = (
     iconName?: any,
@@ -86,6 +85,6 @@ const styles = StyleSheet.create({
     justifyContent: "center",
   },
   icon: {
-    paddingHorizontal: Theme.spacing.sm,
+    paddingHorizontal: 5,
   },
 });

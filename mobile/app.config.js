@@ -1,4 +1,4 @@
-const AppConfig = require("./src/constants/appConfig.ts");
+const AppConfig = require("../common/src/constants/config.ts");
 
 export default {
   name: AppConfig.name,
@@ -9,21 +9,21 @@ export default {
   orientation: "portrait",
   version: AppConfig.version,
   userInterfaceStyle: "automatic",
-  icon: "./assets/icon.png",
+  icon: "../ui/src/logos/icon.png",
   runtimeVersion: AppConfig.runtimeVersion,
   ios: {
     supportsTablet: true,
   },
   android: {
     adaptiveIcon: {
-      foregroundImage: "./assets/adaptive-icon.png",
+      foregroundImage: "../ui/src/logos/icon.png",
       backgroundColor: "#ffffff",
     },
   },
   web: {
     bundler: "metro",
     output: "static",
-    favicon: "./assets/favicon.png",
+    favicon: "../ui/src/logos/favicon.png",
   },
   plugins: ["expo-font", ["expo-router", { "origin": `https://ryde.com/` }], "expo-web-browser"],
   experiments: {

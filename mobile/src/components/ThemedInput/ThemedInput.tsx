@@ -1,9 +1,8 @@
-import { colors } from "@/constants/colors";
+import { II18nextTypes } from "ui";
 import { Ionicons } from "@expo/vector-icons";
 import { useTranslation } from "react-i18next";
-import { II18nextTypes } from "@/types/i18next";
+import { colors, masks, MasksType } from "common";
 import React, { useState, forwardRef } from "react";
-import { masks, MasksType } from "@/constants/masks";
 import { ThemedInputContainer } from "./ThemedInputContainer";
 import {
   View,

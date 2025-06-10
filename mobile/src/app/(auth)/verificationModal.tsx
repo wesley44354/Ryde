@@ -4,10 +4,10 @@ import { ThemedButton } from "@/components/ThemedButton";
 import { ThemedText } from "@/components/ThemedText";
 import ThemedModal from "@/components/ThemedModal";
 import { useSignUp } from "@clerk/clerk-expo";
-import { icons, images } from "@/constants";
 import { Image, View } from "react-native";
 import { fetchAPI } from "@/lib/fetch";
 import { router } from "expo-router";
+import { icons, images } from "ui";
 import { useState } from "react";
 
 const VerificationModal = () => {

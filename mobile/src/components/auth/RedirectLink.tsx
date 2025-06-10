@@ -1,5 +1,5 @@
+import { II18nextTypes } from "ui";
 import { router } from "expo-router";
-import { II18nextTypes } from "@/types/i18next";
 import { ThemedText } from "@/components/ThemedText";
 import { TouchableOpacity, View } from "react-native";
 

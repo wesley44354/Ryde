@@ -1,7 +1,5 @@
-import { pt } from "@/lang/pt";
 import "i18next";
-
-declare type II18nextTypes = typeof pt;
+import { II18nextTypes } from "ui";
 
 declare module "i18next" {
   interface CustomTypeOptions {

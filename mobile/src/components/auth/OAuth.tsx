@@ -1,4 +1,4 @@
-import { icons } from "@/constants";
+import { icons } from "ui";
 import { View } from "react-native";
 import { ThemedText } from "../ThemedText";
 import { ThemedButton } from "../ThemedButton";

@@ -10,7 +10,7 @@ import { useSignIn } from "@clerk/clerk-expo";
 import OAuth from "@/components/auth/OAuth";
 import { useForm } from "react-hook-form";
 import { useRouter } from "expo-router";
-import { icons } from "@/constants";
+import { icons } from "ui";
 import { z } from "zod";
 
 const SignIn = () => {
